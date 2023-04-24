@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/pushupX5"
+        android:title="Отжимания (x5)"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/pushupX10"
+        android:title="Отжимания (X10)"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/situpX5"
+        android:title="Приседания (X5)"
+        app:showAsAction="never"/>
+</menu>
