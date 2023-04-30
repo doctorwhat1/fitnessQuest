@@ -7,10 +7,10 @@
         app:showAsAction="never"/>
     <item
         android:id="@+id/pushupX10"
-        android:title="Отжимания (X10)"
+        android:title="Приседания (X5)"
         app:showAsAction="never"/>
     <item
         android:id="@+id/situpX5"
-        android:title="Приседания (X5)"
+        android:title="Подтягивания (X5)"
         app:showAsAction="never"/>
 </menu>
