@@ -43,6 +43,9 @@ class Cat : Fragment() {
     private lateinit var healthCounter: TextView
     private lateinit var manaCounter: TextView
 
+    private lateinit var catImage: ImageView
+    private lateinit var catStatus: TextView
+
     //var sharedPref: SharedPreferences? = null
 
     private val catStatusArray = arrayOf("Не готов", "Размялся", "Заряжен!")
@@ -68,6 +71,8 @@ class Cat : Fragment() {
 
     }
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -77,6 +82,9 @@ class Cat : Fragment() {
         val view = inflater.inflate(R.layout.fragment_cat, container, false)
 
 
+
+        catImage = view.findViewById(R.id.catStatusIMG)
+        catStatus = view.findViewById(R.id.catStatusTXT)
 
         progressBarMana = view.findViewById(R.id.progressBarMana)
         progressBarHealth = view.findViewById(R.id.progressBarHealth)
@@ -122,6 +130,8 @@ class Cat : Fragment() {
 
         healthCounter.setText(currentProgressHP.toString())
         manaCounter.setText((currentProgressMana/1000).toString())
+
+        checkCatStaus(currentProgressHP)
 //        ObjectAnimator.ofInt(progressBarMana,"progress",currentProgressMana)
 //            .setDuration(2000)
 //            .start()
@@ -144,6 +154,9 @@ class Cat : Fragment() {
                 setProgressBar(progressBarHealth, currentProgressHP)
                 healthCounter.setText(currentProgressHP.toString())
                 saveProgress("hp",currentProgressHP)
+
+                // TODO: Add func CheckCatStatus
+                checkCatStaus(currentProgressHP)
             })
 
             builder.setNegativeButton("Отмена", DialogInterface.OnClickListener {
@@ -212,12 +225,33 @@ class Cat : Fragment() {
 
 
 
+
         return view
     }
 
 
+
+    fun checkCatStaus(currentProgressHP:Int)
+    {
+        if(currentProgressHP<100) {
+            catImage.setImageResource(R.drawable.cat_sad)
+            catStatus.text="Ленивая картошечка"
+
+        }
+        if(currentProgressHP in 100..499)
+        {
+            catImage.setImageResource(R.drawable.cat_normal)
+            catStatus.text="Размялся"
+        }
+        if (currentProgressHP>=500)
+        {
+            catImage.setImageResource(R.drawable.cat_happy)
+            catStatus.text="Заряжен к битве!"
+        }
+    }
+
     //change to public
-    public fun saveProgress(key: String, value: Int)
+    private fun saveProgress(key: String, value: Int)
     {
        // val sharedPref = requireContext().getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
         //val editor = sharedPref.edit()

@@ -7,7 +7,7 @@
     tools:context=".Workout">
 
     <Button
-        android:id="@+id/startWorkoutButton"
+        android:id="@+id/startExerciseButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="84dp"
@@ -36,16 +36,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="174dp"
-        android:layout_height="191dp"
-        android:layout_marginStart="116dp"
-        android:layout_marginTop="284dp"
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/workoutGIF"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="#fff"
+        android:src="@drawable/concentration_curl"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@color/teal_200"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintVertical_bias="0.54" />
 
     <TextView
         android:id="@+id/exerciseText"

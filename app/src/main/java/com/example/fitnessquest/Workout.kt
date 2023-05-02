@@ -14,7 +14,8 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import org.json.JSONObject
-import java.security.AccessController.getContext
+import pl.droidsonroids.gif.GifDrawable
+import pl.droidsonroids.gif.GifImageView
 
 
 class Workout : AppCompatActivity(), SensorEventListener {
@@ -127,6 +128,10 @@ class Workout : AppCompatActivity(), SensorEventListener {
     private lateinit var bossHealthBar : ProgressBar
     private lateinit var bossHealthText : TextView
 
+    private lateinit var workoutGif : GifImageView
+
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -138,16 +143,22 @@ class Workout : AppCompatActivity(), SensorEventListener {
         englishMap["Pushups"] = "Отжимания"
         englishMap["Hammer Curls"] = "Подъём гантелей на бицепс"
         englishMap["Concentration Curls"] = "Сидячий подъём гантелей"
-        englishMap["Bicep Curls"] = "Сгибания рук"
+        englishMap["Bicep Curls"] = "сгибание рук на бицепс"
         englishMap["Chair Dips"] = "Отжимания с упором на стуле"
         englishMap["Reverse Curls"] = "Сгибания с обратным хватом"
-
-
+        englishMap["Decline Pushup"] = "Отжимания под углом"
 
 
 //pictures array
 
-
+        val workoutMap = HashMap<String, Int>()
+        workoutMap["Pushups"] = R.drawable.pushup
+        workoutMap["Concentration Curls"] = R.drawable.concentration_curl
+        workoutMap["Decline Pushup"] = R.drawable.decline_pushup
+        workoutMap["Hammer Curls"] = R.drawable.hammer_curl2
+        workoutMap["Reverse Curls"] = R.drawable.reverse_curl
+        workoutMap["Chair Dips"] = R.drawable.chair_dips2
+        workoutMap["Bicep Curls"] = R.drawable.bicep_curls
 
 
 //        for (i in 0 until jsonArray1.length())
@@ -175,6 +186,8 @@ class Workout : AppCompatActivity(), SensorEventListener {
         timerTXT = findViewById(R.id.timerText)
         timerTXT.visibility = View.INVISIBLE
 
+        workoutGif = findViewById(R.id.workoutGIF)
+
 
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         sensorManager.registerListener(
@@ -182,6 +195,29 @@ class Workout : AppCompatActivity(), SensorEventListener {
             sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
             SensorManager.SENSOR_DELAY_NORMAL
         )
+
+
+        var gifname = "pushup"
+
+        var gifFromResource = GifDrawable(resources, R.drawable.pushup)
+
+        // Works!!!
+        workoutGif.setImageDrawable(gifFromResource)
+
+
+
+        fun setExerciseGif()
+        {
+            //todo fix dis stuff
+            var jsonObject1 = jsonArray1.getJSONObject(step)
+            var exname = workoutMap.get(jsonObject1.getString("Exercise"))
+            if (exname == null)
+            {
+                return
+            }
+            var gifFromResource = GifDrawable(resources, exname)
+            workoutGif.setImageDrawable(gifFromResource)
+        }
 
         fun setExerciseText()
         {
@@ -218,13 +254,14 @@ class Workout : AppCompatActivity(), SensorEventListener {
 
 
 
-        startBTN = findViewById(R.id.startWorkoutButton)
+        startBTN = findViewById(R.id.startExerciseButton)
         startBTN.setOnClickListener(){
             if (step<arrayLen) {
 
-//
+                setExerciseGif()
                 setExerciseText()
-                //TODO Add func to change boss HP bar
+
+                //TODO add SetExerciseGif()
                 damageBossHealth()
 //                jsonObject1 = jsonArray1.getJSONObject(step)
 //                /// exerciseName.setText(jsonObject1.getString("Exercise"))
