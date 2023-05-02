@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
@@ -21,7 +18,7 @@
     <color name="base_50">#F7F7F7</color>
     <color name="base_0">#FFFFFF</color>
 
-    <!--green-->
+    <!--green: primary-->
     <color name="green_900">#006E2D</color>
     <color name="green_800">#008E42</color>
     <color name="green_700">#009F4D</color>
@@ -32,5 +29,53 @@
     <color name="green_200">#99E1B3</color>
     <color name="green_100">#C2EDD1</color>
     <color name="green_50">#E6F8EC</color>
+    
+    <!--orange-->
+    <color name="orange_900">#FF924E</color>
+    <color name="orange_800">#FFB75A</color>
+    <color name="orange_700">#FFCE60</color>
+    <color name="orange_600">#FFDC5E</color>
+    <color name="orange_500">#FFE55B</color>
+    <color name="orange_400">#FFEA70</color>
+    <color name="orange_300">#FFF089</color>
+    <color name="orange_200">#FFF5A9</color>
+    <color name="orange_100">#FFFACC</color>
+    <color name="orange_50">#FFFFEB</color>
+
+    <!--red-->
+    <color name="red_900">#C91829</color>
+    <color name="red_800">#D82635</color>
+    <color name="red_700">#E52E3D</color>
+    <color name="red_600">#F73943</color>
+    <color name="red_500">#FF4144</color>
+    <color name="red_400">#FF555D</color>
+    <color name="red_300">#F2777E</color>
+    <color name="red_200">#F89EA3</color>
+    <color name="red_100">#FFD0D8</color>
+    <color name="red_50">#FFECF0</color>
+
+    <!--blue-->
+    <color name="blue_900">#006570</color>
+    <color name="blue_800">#06889D</color>
+    <color name="blue_700">#0F9BB6</color>
+    <color name="blue_600">#18B0D1</color>
+    <color name="blue_500">#1EC1E5</color>
+    <color name="blue_400">#30CAEB</color>
+    <color name="blue_300">#53D3F0</color>
+    <color name="blue_200">#84E0F6</color>
+    <color name="blue_100">#B5ECFA</color>
+    <color name="blue_50">#E1F7FD</color>
+
+    <!--purple-->
+    <color name="purple_900">#3E029F</color>
+    <color name="purple_800">#4823B7</color>
+    <color name="purple_700">#4F31C3</color>
+    <color name="purple_600">#573DD0</color>
+    <color name="purple_500">#5D46DB</color>
+    <color name="purple_400">#7265E3</color>
+    <color name="purple_300">#8983E9</color>
+    <color name="purple_200">#ABA7EF</color>
+    <color name="purple_100">#CDC9F6</color>
+    <color name="purple_50">#EBEAFC</color>
 
 </resources>
