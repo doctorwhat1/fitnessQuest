@@ -2,4 +2,14 @@
     <string name="app_name">FitnessQuest</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--battles fragment-->
+    <string name="battles_battle_number">Битва №4</string>
+    <string name="battles_your_enemy">Ваш противник:</string>
+    <string name="battles_angry_goblin">ЗЛОЙ ГОБЛИН</string>
+    <string name="battles_enemy_hp">100 HP</string>
+    <string name="battles_battle_condition">Для начала битвы нужно иметь 100 HP</string>
+    <string name="battles_your_hp">Ваше здоровье:</string>
+    <string name="battles_start_fight">Начать битву</string>
+
 </resources>
