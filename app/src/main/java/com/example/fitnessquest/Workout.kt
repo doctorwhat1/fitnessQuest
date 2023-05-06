@@ -152,7 +152,7 @@ class Workout : AppCompatActivity(), SensorEventListener {
 //pictures array
 
         val workoutMap = HashMap<String, Int>()
-        workoutMap["Pushups"] = R.drawable.pushup
+        workoutMap["Pushups"] = R.drawable.pushup1
         workoutMap["Concentration Curls"] = R.drawable.concentration_curl
         workoutMap["Decline Pushup"] = R.drawable.decline_pushup
         workoutMap["Hammer Curls"] = R.drawable.hammer_curl2
@@ -199,7 +199,7 @@ class Workout : AppCompatActivity(), SensorEventListener {
 
         var gifname = "pushup"
 
-        var gifFromResource = GifDrawable(resources, R.drawable.pushup)
+        var gifFromResource = GifDrawable(resources, R.drawable.pushup1)
 
         // Works!!!
         workoutGif.setImageDrawable(gifFromResource)
