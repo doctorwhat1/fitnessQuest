@@ -5,7 +5,7 @@
         android:id="@+id/cat"
         android:icon="@drawable/ic_baseline_festival_24"/>
     <item android:title="Битвы"
-        android:id="@+id/battles"
+        android:id="@+id/battlesFragment"
         android:icon="@drawable/ic_baseline_catching_pokemon_24"/>
     <item android:title="Настройки"
         android:id="@+id/settings"

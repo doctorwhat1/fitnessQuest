@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/cat">
+
+    <fragment
+        android:id="@+id/cat"
+        android:name="com.example.fitnessquest.Cat"
+        android:label="fragment_cat"
+        tools:layout="@layout/fragment_cat" />
+    <fragment
+        android:id="@+id/battlesFragment"
+        android:name="com.example.fitnessquest.BattlesFragment"
+        android:label="fragment_battles"
+        tools:layout="@layout/fragment_battles" />
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.example.fitnessquest.Settings"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+</navigation>

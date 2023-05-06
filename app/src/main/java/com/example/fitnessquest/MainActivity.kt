@@ -13,26 +13,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        replaceFragment(Cat())
-        binding.bottomNavigationView.setOnItemSelectedListener {
-            when(it.itemId){
-                R.id.cat -> replaceFragment(Cat())
-                R.id.battles -> replaceFragment(BattlesFragment())
-                R.id.settings -> replaceFragment(Settings())
-                else -> {
-                }
-            }
-            true
-        }
+
 
     }
 
-
-    private fun replaceFragment(fragment: Fragment)
-    {
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.frameLayout,fragment)
-        fragmentTransaction.commit()
-    }
 }
