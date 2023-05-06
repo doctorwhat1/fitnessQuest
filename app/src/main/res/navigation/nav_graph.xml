@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/cat">
+    app:startDestination="@id/catFragment">
 
     <fragment
-        android:id="@+id/cat"
+        android:id="@+id/catFragment"
         android:name="com.example.fitnessquest.CatFragment"
         android:label="fragment_cat"
         tools:layout="@layout/fragment_cat" />
@@ -16,7 +16,7 @@
         android:label="fragment_battles"
         tools:layout="@layout/fragment_battles" />
     <fragment
-        android:id="@+id/settings"
+        android:id="@+id/settingsFragment"
         android:name="com.example.fitnessquest.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
