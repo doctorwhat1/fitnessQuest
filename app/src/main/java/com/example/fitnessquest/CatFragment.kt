@@ -3,9 +3,7 @@ package com.example.fitnessquest
 import android.animation.ObjectAnimator
 import android.app.AlertDialog
 import android.content.Context
-import android.content.Context.MODE_PRIVATE
 import android.content.DialogInterface
-import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -24,10 +22,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [Cat.newInstance] factory method to
+ * Use the [CatFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class Cat : Fragment() {
+class CatFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/cat"
-        android:name="com.example.fitnessquest.Cat"
+        android:name="com.example.fitnessquest.CatFragment"
         android:label="fragment_cat"
         tools:layout="@layout/fragment_cat" />
     <fragment
@@ -17,7 +17,7 @@
         tools:layout="@layout/fragment_battles" />
     <fragment
         android:id="@+id/settings"
-        android:name="com.example.fitnessquest.Settings"
+        android:name="com.example.fitnessquest.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>

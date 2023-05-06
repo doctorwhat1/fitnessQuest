@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.fitnessquest.databinding.FragmentBattlesBinding
 
-//import com.example.fitnessquest.Cat
+//import com.example.fitnessquest.CatFragment
 
 
 class BattlesFragment : Fragment() {
