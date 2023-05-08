@@ -219,7 +219,6 @@
                     android:layout_height="wrap_content"
                     android:progress="40"
                     android:progressDrawable="@drawable/bg_pb_hp"
-                    android:progressTint="#E53935"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

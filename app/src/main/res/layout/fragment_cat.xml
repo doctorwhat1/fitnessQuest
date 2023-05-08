@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/base_50"
     tools:context=".CatFragment">
 
     <androidx.cardview.widget.CardView
@@ -74,8 +75,8 @@
 
     <ImageView
         android:id="@+id/iv_calendar_icon"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toStartOf="@+id/tv_current_date"
@@ -83,7 +84,8 @@
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cv_cat_info"
-        tools:src="@tools:sample/avatars" />
+        android:src="@drawable/ic_cat_calendar"
+        app:tint="@color/base_900" />
 
     <TextView
         android:id="@+id/tv_current_date"
@@ -91,14 +93,18 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:text="6 матра, пн"
+        android:textAppearance="@style/H6"
+        android:textColor="@color/base_900"
         app:layout_constraintBottom_toBottomOf="@+id/iv_calendar_icon"
         app:layout_constraintStart_toEndOf="@+id/iv_calendar_icon"
         app:layout_constraintTop_toTopOf="@+id/iv_calendar_icon" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_strolls"
+        style="@style/CatCardViewStyle"
         android:layout_width="0dp"
-        android:layout_height="0dp">
+        android:layout_height="0dp"
+        android:backgroundTint="@color/green_500">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -108,58 +114,53 @@
                 android:id="@+id/tv_strolls"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="strolls"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:text="Прогулки"
+                android:textAppearance="@style/BodyMedium"
+                android:textColor="@color/base_0"
+                app:drawableTint="@color/base_0"
+                app:layout_constraintEnd_toStartOf="@+id/iv_strolls_icon"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_activity"
-        android:layout_width="0dp"
-        android:layout_height="0dp">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tv_activity"
+            <ImageView
+                android:id="@+id/iv_strolls_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="activity"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tv_strolls"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/ic_cat_strolls"
+                app:tint="@color/base_0" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_sleep"
-        android:layout_width="0dp"
-        android:layout_height="0dp">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tv_sleep"
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="sleep"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/tv_strolls_goal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_strolls" />
+
+            <TextView
+                android:id="@+id/tv_strolls_goal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Цель 6000"
+                android:textAppearance="@style/Caption"
+                android:textColor="@color/green_100"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_food"
+        style="@style/CatCardViewStyle"
         android:layout_width="0dp"
         android:layout_height="0dp">
 
@@ -173,16 +174,237 @@
                 android:id="@+id/tv_food"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="food"
+                android:text="Еда"
+                android:textAppearance="@style/BodyMedium"
+                android:textColor="@color/base_900" />
+
+            <ImageView
+                android:id="@+id/iv_food_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_cat_food"
+                app:tint="@color/orange_900" />
+
+            <TextView
+                android:id="@+id/tv_current_kilocalories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textAppearance="@style/H6"
+                android:textColor="@color/orange_900" />
+
+            <TextView
+                android:id="@+id/tv_kilocalories_slash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="/"
+                android:textAppearance="@style/BodyMedium"
+                android:textColor="@color/base_700" />
+
+            <TextView
+                android:id="@+id/tv_required_kilocalories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2500"
+                android:textAppearance="@style/BodyMedium"
+                android:textColor="@color/orange_900" />
+
+            <TextView
+                android:id="@+id/tv_kcal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ккал"
+                android:textAppearance="@style/BodyMedium"
+                android:textColor="@color/base_700" />
+
+            <TextView
+                android:id="@+id/tv_breakfast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="завтрак"
+                android:textAppearance="@style/BodyMedium"
+                android:textColor="@color/base_700" />
+
+            <TextView
+                android:id="@+id/tv_lunch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="обед"
+                android:textAppearance="@style/BodyMedium"
+                android:textColor="@color/base_700" />
+
+            <TextView
+                android:id="@+id/tv_dinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ужин"
+                android:textAppearance="@style/BodyMedium"
+                android:textColor="@color/base_700" />
+
+            <Button
+                android:id="@+id/btn_input_food"
+                style="@style/ThemeOverlay.CardButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/orange_900"
+                android:text="ввести"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/flow_meals"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/flow_food_card_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="tv_food,iv_food_icon"
+                app:flow_horizontalStyle="spread_inside"
+                app:layout_constraintBottom_toTopOf="@+id/flow_food_progress"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread_inside" />
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/flow_food_progress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:constraint_referenced_ids="tv_current_kilocalories,tv_kilocalories_slash,tv_required_kilocalories,tv_kcal"
+                app:flow_horizontalGap="4dp"
+                app:flow_horizontalStyle="packed"
+                app:flow_verticalAlign="center"
+                app:layout_constraintBottom_toTopOf="@+id/flow_meals"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/flow_food_card_description" />
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/flow_meals"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:constraint_referenced_ids="tv_breakfast,tv_lunch,tv_dinner"
+                app:flow_horizontalAlign="start"
+                app:layout_constraintBottom_toTopOf="@+id/btn_input_food"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/flow_food_progress" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_activity"
+        style="@style/CatCardViewStyle"
+        android:layout_width="0dp"
+        android:layout_height="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Активность"
+                android:textAppearance="@style/BodyMedium"
+                android:textColor="@color/base_900"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_activity_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_cat_fire"
+                app:tint="@color/red_500" />
+
+            <TextView
+                android:id="@+id/tv_current_activity_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textAppearance="@style/H6"
+                android:textColor="@color/red_400" />
+
+            <TextView
+                android:id="@+id/tv_activity_slash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="/"
+                android:textAppearance="@style/BodyMedium"
+                android:textColor="@color/base_700" />
+
+            <TextView
+                android:id="@+id/tv_required_activity_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="90"
+                android:textAppearance="@style/BodyMedium"
+                android:textColor="@color/red_400" />
+
+            <TextView
+                android:id="@+id/tv_min"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="мин"
+                android:textAppearance="@style/BodyMedium"
+                android:textColor="@color/base_700" />
+
+            <Button
+                android:id="@+id/btn_input_activity"
+                style="@style/ThemeOverlay.CardButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/red_400"
+                android:text="ввести"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/flow_activity_progress"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/flow_acitivity_card_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="tv_activity,iv_activity_icon"
+                app:flow_horizontalStyle="spread_inside"
+                app:flow_verticalAlign="center"
+                app:layout_constraintBottom_toTopOf="@+id/flow_activity_progress"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread_inside" />
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/flow_activity_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="tv_current_activity_time,tv_activity_slash,tv_required_activity_time,tv_min"
+                app:flow_horizontalGap="4dp"
+                app:flow_horizontalStyle="packed"
+                app:flow_verticalAlign="center"
+                app:layout_constraintBottom_toTopOf="@+id/btn_input_activity"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/flow_acitivity_card_description" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_water"
+        style="@style/CatCardViewStyle"
         android:layout_width="0dp"
         android:layout_height="0dp">
 
@@ -196,17 +418,183 @@
                 android:id="@+id/tv_water"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="water"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:text="Вода"
+                android:textAppearance="@style/BodyMedium"
+                android:textColor="@color/base_900"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_water_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_cat_cup"
+                app:tint="@color/blue_500" />
+
+            <TextView
+                android:id="@+id/tv_current_cups"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textAppearance="@style/H6"
+                android:textColor="@color/blue_500" />
+
+            <TextView
+                android:id="@+id/tv_water_slash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="/"
+                android:textAppearance="@style/BodyMedium"
+                android:textColor="@color/base_700" />
+
+            <TextView
+                android:id="@+id/tv_required_cups"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8"
+                android:textAppearance="@style/BodyMedium"
+                android:textColor="@color/blue_500" />
+
+            <TextView
+                android:id="@+id/tv_cups"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="стак."
+                android:textAppearance="@style/BodyMedium"
+                android:textColor="@color/base_700" />
+
+            <ImageButton
+                android:id="@+id/ibtn_water_remove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/blue_500"
+                android:src="@drawable/ic_baseline_remove_24"
+                app:tint="@color/base_0" />
+
+            <ImageButton
+                android:id="@+id/ibtn_water_add"
+                style="@style/ThemeOverlay.CardButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/blue_500"
+                android:src="@drawable/ic_baseline_add_24"
+                app:tint="@color/base_0" />
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/flow_water_card_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="tv_water,iv_water_icon"
+                app:flow_horizontalStyle="spread_inside"
+                app:flow_verticalAlign="center"
+                app:layout_constraintBottom_toTopOf="@+id/flow_water_progress"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread_inside" />
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/flow_water_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="tv_current_cups,tv_water_slash,tv_required_cups,tv_cups"
+                app:flow_horizontalGap="4dp"
+                app:flow_horizontalStyle="packed"
+                app:flow_verticalAlign="center"
+                app:layout_constraintBottom_toTopOf="@+id/flow_water_buttons"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/flow_water_card_description" />
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/flow_water_buttons"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="ibtn_water_remove,ibtn_water_add"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/flow_water_progress" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cv_sleep"
+        style="@style/CatCardViewStyle"
+        android:layout_width="0dp"
+        android:layout_height="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_sleep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Сон"
+                android:textAppearance="@style/BodyMedium"
+                android:textColor="@color/base_900"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_sleep_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_cat_bed_clock"
+                android:tint="@color/purple_400" />
+
+            <TextView
+                android:id="@+id/tv_sleep_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="**:** - **:**"
+                android:textAppearance="@style/BodyMedium"
+                android:textColor="@color/base_700"
+                app:layout_constraintBottom_toTopOf="@+id/btn_change_sleep_time"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/flow_sleep_card_description" />
+
+            <Button
+                android:id="@+id/btn_change_sleep_time"
+                style="@style/ThemeOverlay.CardButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/purple_400"
+                android:text="изменить"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_sleep_time" />
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/flow_sleep_card_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="tv_sleep,iv_sleep_icon"
+                app:flow_horizontalStyle="spread_inside"
+                app:flow_verticalAlign="center"
+                app:layout_constraintBottom_toTopOf="@+id/tv_sleep_time"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread_inside" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
         android:id="@+id/cv_weight"
+        style="@style/CatCardViewStyle"
         android:layout_width="0dp"
         android:layout_height="0dp">
 
@@ -218,11 +606,58 @@
                 android:id="@+id/tv_weight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="weight"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:text="Вес"
+                android:textAppearance="@style/BodyMedium"
+                android:textColor="@color/base_900"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_weight_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_cat_scales"
+                android:tint="@color/base_500" />
+
+            <TextView
+                android:id="@+id/tv_current_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-- кг"
+                android:textAppearance="@style/BodyMedium"
+                android:textColor="@color/base_700"
+                app:layout_constraintBottom_toTopOf="@+id/btn_input_weight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/flow_weight_card_description" />
+
+            <Button
+                android:id="@+id/btn_input_weight"
+                style="@style/ThemeOverlay.CardButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/base_500"
+                android:text="ввести"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_current_weight" />
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/flow_weight_card_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="tv_weight,iv_weight_icon"
+                app:flow_horizontalStyle="spread_inside"
+                app:flow_verticalAlign="center"
+                app:layout_constraintBottom_toTopOf="@+id/tv_current_weight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread_inside" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
@@ -234,7 +669,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        app:constraint_referenced_ids="cv_strolls,cv_activity,cv_sleep,cv_food,cv_water,cv_weight"
+        app:constraint_referenced_ids="cv_strolls,cv_food,cv_activity,cv_water,cv_sleep,cv_weight"
         app:flow_horizontalGap="16dp"
         app:flow_maxElementsWrap="2"
         app:flow_verticalGap="16dp"
