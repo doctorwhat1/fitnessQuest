@@ -143,10 +143,11 @@ class Workout : AppCompatActivity(), SensorEventListener {
         englishMap["Pushups"] = "Отжимания"
         englishMap["Hammer Curls"] = "Подъём гантелей на бицепс"
         englishMap["Concentration Curls"] = "Сидячий подъём гантелей"
-        englishMap["Bicep Curls"] = "сгибание рук на бицепс"
+        englishMap["Bicep Curls"] = "Сгибание рук на бицепс"
         englishMap["Chair Dips"] = "Отжимания с упором на стуле"
         englishMap["Reverse Curls"] = "Сгибания с обратным хватом"
         englishMap["Decline Pushup"] = "Отжимания под углом"
+        englishMap["Triceps Dips"] = "Отжимания на трицепс"
 
 
 //pictures array
@@ -159,6 +160,7 @@ class Workout : AppCompatActivity(), SensorEventListener {
         workoutMap["Reverse Curls"] = R.drawable.reverse_curl
         workoutMap["Chair Dips"] = R.drawable.chair_dips2
         workoutMap["Bicep Curls"] = R.drawable.bicep_curls
+        workoutMap["Triceps Dips"] = R.drawable.tricep_dips
 
 
 //        for (i in 0 until jsonArray1.length())
