@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.cat -> replaceFragment(Cat())
-                R.id.battles -> replaceFragment(BattlesFragment())
+                R.id.battles -> replaceFragment(Battles())
                 R.id.settings -> replaceFragment(Settings())
                 else -> {
                 }
