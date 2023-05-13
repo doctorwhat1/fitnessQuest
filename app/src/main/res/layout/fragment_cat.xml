@@ -5,10 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/base_50"
+    android:elevation="0dp"
+    android:stateListAnimator="@null"
     tools:context=".CatFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_cat_info"
+        style="@style/CatTopCardViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,15 +22,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_cat"
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:layout_marginStart="16dp"
+                android:padding="0dp"
+                android:src="@drawable/cat_image2"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@tools:sample/avatars" />
+                app:shapeAppearanceOverlay="@style/RoundedSquare"
+                app:strokeColor="@color/black"
+                app:strokeWidth="0dp" />
 
             <ProgressBar
                 android:id="@+id/pb_hp"
@@ -43,7 +50,7 @@
                 android:progressDrawable="@drawable/bg_pb_hp"
                 app:layout_constraintBottom_toTopOf="@+id/pb_mana"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/barrier_cat_image_right"
+                app:layout_constraintStart_toEndOf="@+id/iv_cat"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ProgressBar
@@ -58,16 +65,8 @@
                 android:progressDrawable="@drawable/bg_pb_mana"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/barrier_cat_image_right"
+                app:layout_constraintStart_toEndOf="@+id/iv_cat"
                 app:layout_constraintTop_toBottomOf="@+id/pb_hp" />
-
-            <androidx.constraintlayout.widget.Barrier
-                android:id="@+id/barrier_cat_image_right"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:barrierDirection="right"
-                app:constraint_referenced_ids="iv_cat"
-                tools:layout_editor_absoluteX="411dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -79,12 +78,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:src="@drawable/ic_cat_calendar"
         app:layout_constraintEnd_toStartOf="@+id/tv_current_date"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cv_cat_info"
-        android:src="@drawable/ic_cat_calendar"
         app:tint="@color/base_900" />
 
     <TextView
@@ -117,33 +116,68 @@
                 android:text="Прогулки"
                 android:textAppearance="@style/BodyMedium"
                 android:textColor="@color/base_0"
-                app:drawableTint="@color/base_0"
-                app:layout_constraintEnd_toStartOf="@+id/iv_strolls_icon"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintHorizontal_chainStyle="spread_inside"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:drawableTint="@color/base_0" />
 
             <ImageView
                 android:id="@+id/iv_strolls_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/tv_strolls"
-                app:layout_constraintTop_toTopOf="parent"
                 android:src="@drawable/ic_cat_strolls"
                 app:tint="@color/base_0" />
 
-            <ProgressBar
-                android:id="@+id/progressBar"
-                style="?android:attr/progressBarStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_layout_progress_strolls"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/tv_strolls_goal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_strolls" />
+                app:layout_constraintTop_toBottomOf="@+id/flow_strolls_card_description">
+
+                <TextView
+                    android:id="@+id/tv_current_steps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4656"
+                    android:textAppearance="@style/BodyMedium"
+                    android:textColor="@color/base_0"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_steps"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/tv_steps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="шагов"
+                    android:textAppearance="@style/BodyMedium"
+                    android:textColor="@color/green_300"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_current_steps" />
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/pb_strolls"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:progress="80"
+                    app:indicatorColor="@color/base_0"
+                    app:indicatorSize="100dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:trackColor="@color/green_300"
+                    app:trackCornerRadius="5dp"
+                    app:trackThickness="6dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/tv_strolls_goal"
@@ -153,7 +187,24 @@
                 android:textAppearance="@style/Caption"
                 android:textColor="@color/green_100"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraint_layout_progress_strolls" />
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/flow_strolls_card_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="tv_strolls,iv_strolls_icon"
+                app:flow_horizontalStyle="spread_inside"
+                app:flow_verticalAlign="center"
+                app:layout_constraintBottom_toTopOf="@+id/constraint_layout_progress_strolls"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread_inside" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
@@ -465,7 +516,7 @@
 
             <ImageButton
                 android:id="@+id/ibtn_water_remove"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/blue_500"
                 android:src="@drawable/ic_baseline_remove_24"
@@ -474,7 +525,7 @@
             <ImageButton
                 android:id="@+id/ibtn_water_add"
                 style="@style/ThemeOverlay.CardButton"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/blue_500"
                 android:src="@drawable/ic_baseline_add_24"
@@ -515,7 +566,7 @@
                 app:constraint_referenced_ids="ibtn_water_remove,ibtn_water_add"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/flow_water_progress" />
 
@@ -548,7 +599,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_cat_bed_clock"
-                android:tint="@color/purple_400" />
+                app:tint="@color/purple_400" />
 
             <TextView
                 android:id="@+id/tv_sleep_time"
@@ -617,7 +668,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_cat_scales"
-                android:tint="@color/base_500" />
+                app:tint="@color/base_500" />
 
             <TextView
                 android:id="@+id/tv_current_weight"
@@ -662,7 +713,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.constraintlayout.helper.widget.Flow
-        android:id="@+id/flow2"
+        android:id="@+id/flow_cat_cards"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
