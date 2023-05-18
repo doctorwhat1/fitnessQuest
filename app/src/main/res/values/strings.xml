@@ -3,6 +3,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!--buttons-->
+    <string name="enter">ввести</string>
+    <string name="change">изменить</string>
+
     <!--cat fragment-->
     <string name="cat_current_water_cups">%d</string>
     <string-array name="months">
