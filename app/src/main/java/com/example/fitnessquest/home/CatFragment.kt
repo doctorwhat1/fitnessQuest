@@ -19,6 +19,7 @@ class CatFragment : Fragment() {
 
     // view model
     lateinit var viewModel: CatViewModel
+    lateinit var viewModelFactory: CatViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +28,9 @@ class CatFragment : Fragment() {
         _binding = FragmentCatBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        viewModel = ViewModelProvider(this).get(CatViewModel::class.java)
+        viewModelFactory = CatViewModelFactory(resources)
+        viewModel = ViewModelProvider(this, viewModelFactory)
+            .get(CatViewModel::class.java)
 
         binding.catViewModel = viewModel // set the data binding variable
         binding.lifecycleOwner = viewLifecycleOwner // lets the layout respond to live data updates

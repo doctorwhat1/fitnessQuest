@@ -100,7 +100,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:text="6 матра, пн"
+            android:text="@{catViewModel.getCurrentDate()}"
             android:textAppearance="@style/H6"
             android:textColor="@color/base_900"
             app:layout_constraintBottom_toBottomOf="@+id/iv_calendar_icon"
