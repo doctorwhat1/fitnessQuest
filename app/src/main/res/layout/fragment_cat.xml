@@ -9,6 +9,7 @@
         <variable
             name="catViewModel"
             type="com.example.fitnessquest.home.CatViewModel" />
+        <import type="android.view.View"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -621,9 +622,35 @@
                     android:textColor="@color/base_700"
                     app:layout_constraintBottom_toTopOf="@+id/btn_change_sleep_time"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_sleep_time_check_icon"
                     app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/flow_sleep_card_description" />
+
+                <TextView
+                    android:id="@+id/tv_sleep_time_reward"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{catViewModel.isSleepTimeRewardReceived() ? View.GONE : View.VISIBLE }"
+                    android:background="@drawable/bd_reward"
+                    android:backgroundTint="@color/purple_300"
+                    android:padding="4dp"
+                    android:text="+50MN"
+                    android:textColor="@color/base_0"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_sleep_time_check_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cat_check"
+                    android:visibility="@{catViewModel.isSleepTimeRewardReceived() ? View.VISIBLE : View.GONE }"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
                     android:id="@+id/btn_change_sleep_time"
@@ -694,6 +721,20 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/flow_weight_card_description" />
 
+                <TextView
+                    android:id="@+id/tv_weight_reward"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{catViewModel.isWeightRewardReceived() ? View.GONE : View.VISIBLE}"
+                    android:background="@drawable/bd_reward"
+                    android:backgroundTint="@color/base_300"
+                    android:padding="4dp"
+                    android:text="+50HP"
+                    android:textColor="@color/base_0"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <Button
                     android:id="@+id/btn_input_weight"
                     style="@style/ThemeOverlay.CardButton"
@@ -706,6 +747,16 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_current_weight" />
+
+                <ImageView
+                    android:id="@+id/iv_weight_check_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cat_check"
+                    android:visibility="@{catViewModel.isWeightRewardReceived() ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.constraintlayout.helper.widget.Flow
                     android:id="@+id/flow_weight_card_description"

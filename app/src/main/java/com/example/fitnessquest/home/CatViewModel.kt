@@ -5,10 +5,7 @@ import android.content.res.Resources
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.fitnessquest.CURRENT_WEIGHT
-import com.example.fitnessquest.FALLING_ASLEEP_TIME
-import com.example.fitnessquest.R
-import com.example.fitnessquest.WAKEUP_TIME
+import com.example.fitnessquest.*
 import java.util.*
 
 class CatViewModel(
@@ -16,6 +13,7 @@ class CatViewModel(
     private val sharedPreferences: SharedPreferences
 ) : ViewModel() {
 
+    // current values
     private val _currentWaterCups = MutableLiveData(0)
     val currentWaterCups: LiveData<Int>
         get() = _currentWaterCups
@@ -32,7 +30,14 @@ class CatViewModel(
     val currentWeight: LiveData<String>
         get() = _currentWeight
 
+    // rewards
+    private val _isWeightRewardReceived = MutableLiveData(false)
+    val isWeightRewardReceived: LiveData<Boolean>
+        get() = _isWeightRewardReceived
 
+    private val _isSleepTimeRewardReceived = MutableLiveData(false)
+    val isSleepTimeRewardReceived: LiveData<Boolean>
+        get() = _isSleepTimeRewardReceived
 
     /*fun setCurrentStrolls() {
         TODO("Not yet implemented")
@@ -82,6 +87,14 @@ class CatViewModel(
             .getStringArray(R.array.days_of_week)[dayIndex]
 
         return "$day $month, $dayOfWeek"
+    }
+
+    fun setIsSleepRewardReceived() {
+        _isSleepTimeRewardReceived.value = sharedPreferences.getBoolean(IS_SLEEP_TIME_REWARD_RECEIVED, false)
+    }
+
+    fun setIsWeightRewardReceived() {
+        _isWeightRewardReceived.value = sharedPreferences.getBoolean(IS_WEIGHT_REWARD_RECEIVED, false)
     }
 
 }

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.fitnessquest.APP_PREFERENCES
 import com.example.fitnessquest.CURRENT_WEIGHT
+import com.example.fitnessquest.IS_WEIGHT_REWARD_RECEIVED
 import com.example.fitnessquest.R
 import com.example.fitnessquest.databinding.FragmentWeightBinding
 import com.example.fitnessquest.home.CatViewModel
@@ -37,6 +38,7 @@ class WeightFragment : Fragment() {
             val sharedPref = requireContext().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
             val editor =  sharedPref.edit()
             editor.putString(CURRENT_WEIGHT, weight)
+            editor.putBoolean(IS_WEIGHT_REWARD_RECEIVED, true)
             editor.apply()
         }
 

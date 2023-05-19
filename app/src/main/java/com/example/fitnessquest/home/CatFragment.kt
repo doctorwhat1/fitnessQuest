@@ -49,6 +49,11 @@ class CatFragment : Fragment() {
         viewModel.setSleepTime()
         viewModel.setCurrentWeight()
 
+        // rewards
+        viewModel.setIsSleepRewardReceived()
+        viewModel.setIsWeightRewardReceived()
+
+
         // set cards on click
         binding.cvStrolls.setOnClickListener {
             view.findNavController().navigate(R.id.action_catFragment_to_strollsFragment)
