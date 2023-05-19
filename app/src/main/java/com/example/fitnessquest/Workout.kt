@@ -185,8 +185,8 @@ class Workout : AppCompatActivity(), SensorEventListener {
 
         accelerometer_data = findViewById(R.id.accelerometerTXT)
 
-        timerTXT = findViewById(R.id.timerText)
-        timerTXT.visibility = View.INVISIBLE
+//        timerTXT = findViewById(R.id.timerText)
+//        timerTXT.visibility = View.INVISIBLE
 
         workoutGif = findViewById(R.id.workoutGIF)
 

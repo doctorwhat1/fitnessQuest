@@ -53,9 +53,10 @@
         android:id="@+id/exerciseText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="188dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="132dp"
         android:text="Название упражнения"
+        android:textSize="34sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -63,19 +64,10 @@
         android:id="@+id/exerciseRepsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="220dp"
-        android:layout_marginEnd="164dp"
+        android:layout_marginTop="192dp"
+        android:layout_marginEnd="148dp"
         android:text="Повторения"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/timerText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
-        android:layout_marginEnd="4dp"
-        android:text="ТАЙМЕР?"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -98,7 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="192dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="12dp"
         android:foregroundGravity="center_vertical|center|center_horizontal"
         android:gravity="center_horizontal|center_vertical"
         android:text="100"
