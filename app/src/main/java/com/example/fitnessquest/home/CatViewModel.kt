@@ -1,17 +1,48 @@
 package com.example.fitnessquest.home
 
+import android.content.SharedPreferences
 import android.content.res.Resources
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.fitnessquest.CURRENT_WEIGHT
 import com.example.fitnessquest.R
 import java.util.*
 
-class CatViewModel(private val resources: Resources) : ViewModel() {
+class CatViewModel(
+    private val resources: Resources,
+    private val sharedPreferences: SharedPreferences
+) : ViewModel() {
 
     private val _currentWaterCups = MutableLiveData(0)
     val currentWaterCups: LiveData<Int>
         get() = _currentWaterCups
+
+    private val _currentWeight = MutableLiveData("--")
+    val currentWeight: LiveData<String>
+        get() = _currentWeight
+
+    /*fun setCurrentStrolls() {
+        TODO("Not yet implemented")
+    }
+
+    fun setCurrentCalories() {
+        TODO("Not yet implemented")
+    }
+
+    fun setCurrentActivity() {
+        TODO("Not yet implemented")
+    }
+
+    fun setSleepTime() {
+        TODO("Not yet implemented")
+    }*/
+
+    fun setCurrentWeight() {
+        if (sharedPreferences.contains(CURRENT_WEIGHT)) {
+            _currentWeight.value = sharedPreferences.getString(CURRENT_WEIGHT, "")
+        }
+    }
 
     fun increaseWaterCups() {
         _currentWaterCups.value = (_currentWaterCups.value ?: 0) + 1
@@ -19,7 +50,7 @@ class CatViewModel(private val resources: Resources) : ViewModel() {
 
     fun decreaseWaterCups() {
         if (currentWaterCups.value == 0) return
-        _currentWaterCups.value =(_currentWaterCups.value ?: 0) - 1
+        _currentWaterCups.value = (_currentWaterCups.value ?: 0) - 1
     }
 
     fun getCurrentDate(): String {

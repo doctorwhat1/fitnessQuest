@@ -1,5 +1,6 @@
 package com.example.fitnessquest.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import com.example.fitnessquest.APP_PREFERENCES
 import com.example.fitnessquest.R
 import com.example.fitnessquest.databinding.FragmentCatBinding
 import com.google.android.material.snackbar.Snackbar
@@ -30,13 +32,24 @@ class CatFragment : Fragment() {
         _binding = FragmentCatBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        viewModelFactory = CatViewModelFactory(resources)
+        viewModelFactory = CatViewModelFactory(
+            resources,
+            requireContext()
+                .getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
+        )
         viewModel = ViewModelProvider(this, viewModelFactory)
             .get(CatViewModel::class.java)
 
         binding.catViewModel = viewModel // set the data binding variable
         binding.lifecycleOwner = viewLifecycleOwner // lets the layout respond to live data updates
 
+        /*viewModel.setCurrentStrolls()
+        viewModel.setCurrentCalories()
+        viewModel.setCurrentActivity()
+        viewModel.setSleepTime()*/
+        viewModel.setCurrentWeight()
+
+        // set cards on click
         binding.cvStrolls.setOnClickListener {
             view.findNavController().navigate(R.id.action_catFragment_to_strollsFragment)
         }
@@ -56,9 +69,20 @@ class CatFragment : Fragment() {
             view.findNavController().navigate(R.id.action_catFragment_to_weightFragment)
         }
 
+        // set cards buttons on click
+        binding.btnInputFood.setOnClickListener {
+            view.findNavController().navigate(R.id.action_catFragment_to_foodFragment)
+        }
+        binding.btnInputActivity.setOnClickListener {
+            view.findNavController().navigate(R.id.action_catFragment_to_activityFragment)
+        }
+        binding.btnChangeSleepTime.setOnClickListener {
+            view.findNavController().navigate(R.id.action_catFragment_to_sleepFragment)
+        }
         binding.btnInputWeight.setOnClickListener {
             view.findNavController().navigate(R.id.action_catFragment_to_weightFragment)
         }
+
 
         return view
     }
@@ -67,4 +91,5 @@ class CatFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }

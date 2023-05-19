@@ -3,12 +3,21 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!--shared preferences keys-->
+    <string name="CURRENT_STEPS">CURRENT_STEPS</string>
+    <string name="CURRENT_CALORIES">CURRENT_CALORIES</string>
+    <string name="CURRENT_ACTIVITY">CURRENT_ACTIVITY</string>
+    <string name="CURRENT_WATER_CUPS">CURRENT_WATER_CUPS</string>
+    <string name="CURRENT_SLEEP_TIME">CURRENT_SLEEP_TIME</string>
+    <string name="CURRENT_WEIGHT">CURRENT_WEIGHT</string>
+
     <!--buttons-->
     <string name="enter">ввести</string>
     <string name="change">изменить</string>
 
     <!--cat fragment-->
     <string name="cat_current_water_cups">%d</string>
+    <string name="cat_current_weight">%s кг</string>
     <string-array name="months">
         <item>января</item>
         <item>февраля</item>
