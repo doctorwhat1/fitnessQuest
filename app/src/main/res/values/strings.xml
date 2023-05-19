@@ -16,6 +16,7 @@
     <string name="change">изменить</string>
 
     <!--cat fragment-->
+    <string name="cat_sleep_time">%1$s - %2$s</string>
     <string name="cat_current_water_cups">%d</string>
     <string name="cat_current_weight">%s кг</string>
     <string-array name="months">

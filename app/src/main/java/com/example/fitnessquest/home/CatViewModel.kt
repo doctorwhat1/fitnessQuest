@@ -6,7 +6,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.fitnessquest.CURRENT_WEIGHT
+import com.example.fitnessquest.FALLING_ASLEEP_TIME
 import com.example.fitnessquest.R
+import com.example.fitnessquest.WAKEUP_TIME
 import java.util.*
 
 class CatViewModel(
@@ -18,25 +20,39 @@ class CatViewModel(
     val currentWaterCups: LiveData<Int>
         get() = _currentWaterCups
 
+    private val _fallingAsleepTime = MutableLiveData("**:**")
+    val fallingAsleepTime: LiveData<String>
+        get() = _fallingAsleepTime
+
+    private val _wakeupTime = MutableLiveData("**:**")
+    val wakeupTime: LiveData<String>
+        get() = _wakeupTime
+
     private val _currentWeight = MutableLiveData("--")
     val currentWeight: LiveData<String>
         get() = _currentWeight
 
+
+
     /*fun setCurrentStrolls() {
         TODO("Not yet implemented")
-    }
+    }*/
 
-    fun setCurrentCalories() {
-        TODO("Not yet implemented")
-    }
-
-    fun setCurrentActivity() {
-        TODO("Not yet implemented")
-    }
-
-    fun setSleepTime() {
+    /*fun setCurrentCalories() {
         TODO("Not yet implemented")
     }*/
+
+    /*fun setCurrentActivity() {
+        TODO("Not yet implemented")
+    }*/
+
+    fun setSleepTime() {
+        if (sharedPreferences.contains(FALLING_ASLEEP_TIME)
+            && sharedPreferences.contains(WAKEUP_TIME)) {
+            _fallingAsleepTime.value = sharedPreferences.getString(FALLING_ASLEEP_TIME, "**-**")
+            _wakeupTime.value = sharedPreferences.getString(WAKEUP_TIME, "**-**")
+        }
+    }
 
     fun setCurrentWeight() {
         if (sharedPreferences.contains(CURRENT_WEIGHT)) {

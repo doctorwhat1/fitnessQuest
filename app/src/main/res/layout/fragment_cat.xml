@@ -616,7 +616,7 @@
                     android:id="@+id/tv_sleep_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="**:** - **:**"
+                    android:text="@{@string/cat_sleep_time(catViewModel.fallingAsleepTime, catViewModel.wakeupTime)}"
                     android:textAppearance="@style/BodyMedium"
                     android:textColor="@color/base_700"
                     app:layout_constraintBottom_toTopOf="@+id/btn_change_sleep_time"

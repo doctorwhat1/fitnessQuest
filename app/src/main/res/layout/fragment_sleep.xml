@@ -7,12 +7,66 @@
     tools:context=".home.cards.SleepFragment">
 
     <TextView
+        android:id="@+id/tv_sleep_sf"
+        android:layout_width="379dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text="Cон"
+        app:layout_constraintBottom_toTopOf="@+id/tv_dash_sf"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/tv_dash_sf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sleep"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="-"
+        app:layout_constraintBottom_toTopOf="@+id/btn_enter_sleep_time"
+        app:layout_constraintEnd_toStartOf="@+id/et_wakeup_time"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/et_falling_asleep_time"
+        app:layout_constraintTop_toBottomOf="@+id/tv_sleep_sf" />
+
+    <EditText
+        android:id="@+id/et_falling_asleep_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:inputType="time"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_dash_sf"
+        app:layout_constraintEnd_toStartOf="@+id/tv_dash_sf"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_dash_sf" />
+
+    <EditText
+        android:id="@+id/et_wakeup_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="time"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_dash_sf"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_dash_sf"
+        app:layout_constraintTop_toTopOf="@+id/tv_dash_sf" />
+
+    <Button
+        android:id="@+id/btn_enter_sleep_time"
+        android:layout_width="379dp"
+        android:layout_height="wrap_content"
+        android:text="ввести"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_dash_sf" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -45,8 +45,8 @@ class CatFragment : Fragment() {
 
         /*viewModel.setCurrentStrolls()
         viewModel.setCurrentCalories()
-        viewModel.setCurrentActivity()
-        viewModel.setSleepTime()*/
+        viewModel.setCurrentActivity()*/
+        viewModel.setSleepTime()
         viewModel.setCurrentWeight()
 
         // set cards on click
