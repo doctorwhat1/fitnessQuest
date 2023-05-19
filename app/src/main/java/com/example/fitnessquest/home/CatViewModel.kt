@@ -13,6 +13,16 @@ class CatViewModel(
     private val sharedPreferences: SharedPreferences
 ) : ViewModel() {
 
+    // current indicators
+    private val _currentHP = MutableLiveData(0)
+    val currentHP: LiveData<Int>
+        get() = _currentHP
+
+    private val _currentMana = MutableLiveData(0)
+    val currentMana: LiveData<Int>
+        get() = _currentMana
+
+
     // current values
     private val _currentWaterCups = MutableLiveData(0)
     val currentWaterCups: LiveData<Int>
@@ -30,6 +40,7 @@ class CatViewModel(
     val currentWeight: LiveData<String>
         get() = _currentWeight
 
+
     // rewards
     private val _isWeightRewardReceived = MutableLiveData(false)
     val isWeightRewardReceived: LiveData<Boolean>
@@ -39,6 +50,16 @@ class CatViewModel(
     val isSleepTimeRewardReceived: LiveData<Boolean>
         get() = _isSleepTimeRewardReceived
 
+    
+    fun setHP() {
+        _currentHP.value = sharedPreferences.getInt(CURRENT_HP, 0)
+    }
+    
+    fun setMana() {
+        _currentMana.value = sharedPreferences.getInt(CURRENT_MANA, 0)
+    }
+
+    
     /*fun setCurrentStrolls() {
         TODO("Not yet implemented")
     }*/

@@ -43,6 +43,10 @@ class CatFragment : Fragment() {
         binding.catViewModel = viewModel // set the data binding variable
         binding.lifecycleOwner = viewLifecycleOwner // lets the layout respond to live data updates
 
+        // cat indicators
+        viewModel.setMana()
+        viewModel.setHP()
+
         /*viewModel.setCurrentStrolls()
         viewModel.setCurrentCalories()
         viewModel.setCurrentActivity()*/

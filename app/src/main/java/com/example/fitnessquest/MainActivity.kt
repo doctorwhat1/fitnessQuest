@@ -1,5 +1,6 @@
 package com.example.fitnessquest
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -21,6 +22,15 @@ class MainActivity : AppCompatActivity() {
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         binding.bottomNavigationView.setupWithNavController(navController)
+
+        // FOR TESTING !!! DELETE ON RELEASE
+        val sharedPreferences = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putBoolean(IS_SLEEP_TIME_REWARD_RECEIVED, false)
+        editor.putBoolean(IS_WEIGHT_REWARD_RECEIVED, false)
+        editor.putInt(CURRENT_HP, 20)
+        editor.putInt(CURRENT_MANA, 10)
+        editor.apply()
 
     }
 
