@@ -1,7 +1,14 @@
 package com.example.fitnessquest.home
 
+import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Resources
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,9 +16,46 @@ import com.example.fitnessquest.*
 import java.util.*
 
 class CatViewModel(
+    private val sensorManager: SensorManager?,
     private val resources: Resources,
     private val sharedPreferences: SharedPreferences
-) : ViewModel() {
+) : ViewModel(), SensorEventListener {
+
+    // ------------------ STEP COUNTER ------------------------------------------------------------------
+    private var initialTotalSteps = sharedPreferences.getFloat(INITIAL_TOTAL_STEPS, 0f) // initial total steps
+
+    // current indicators
+    private val _currentSteps = MutableLiveData(0)
+    val currentSteps: LiveData<Int>
+        get() = _currentSteps
+
+    override fun onSensorChanged(event: SensorEvent?) {
+        val totalSteps = event!!.values[0]
+
+        if (initialTotalSteps == 0f) {
+            initialTotalSteps = totalSteps // initialize
+            // save initial total steps to shared preferences
+            val editor = sharedPreferences.edit()
+            editor.putFloat(INITIAL_TOTAL_STEPS, initialTotalSteps)
+            editor.apply()
+        }
+
+        _currentSteps.value = (totalSteps - initialTotalSteps).toInt()
+    }
+
+    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {}
+
+    fun onResumeStepCounter() {
+        // Returns the number of steps taken by the user since the last reboot while activated
+        // This sensor requires permission android.permission.ACTIVITY_RECOGNITION.
+        // So don't forget to add the following permission in AndroidManifest.xml present in manifest folder of the app.
+        val stepSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
+
+        // Rate suitable for the user interface
+        sensorManager?.registerListener(this, stepSensor, SensorManager.SENSOR_DELAY_UI)
+    }
+    // ------------------------------------------------------------------------------------------------
+
 
     // current indicators
     private val _currentHP = MutableLiveData(0)

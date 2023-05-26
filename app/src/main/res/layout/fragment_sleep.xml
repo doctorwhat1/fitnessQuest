@@ -63,6 +63,7 @@
         android:id="@+id/btn_enter_sleep_time"
         android:layout_width="379dp"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/purple_400"
         android:text="ввести"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

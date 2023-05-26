@@ -1,19 +1,17 @@
 package com.example.fitnessquest.home
 
 import android.content.Context
+import android.hardware.SensorManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.fitnessquest.APP_PREFERENCES
 import com.example.fitnessquest.R
 import com.example.fitnessquest.databinding.FragmentCatBinding
-import com.google.android.material.snackbar.Snackbar
 
 
 class CatFragment : Fragment() {
@@ -25,6 +23,7 @@ class CatFragment : Fragment() {
     lateinit var viewModel: CatViewModel
     lateinit var viewModelFactory: CatViewModelFactory
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,7 +31,15 @@ class CatFragment : Fragment() {
         _binding = FragmentCatBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        /*val steps = requireContext()
+            .getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
+            .getInt(PREVIOUS_TOTAL_STEPS, 0)
+        Toast.makeText(context, "steps in sharef pref: ${steps}", Toast.LENGTH_SHORT).show()*/
+
+        // Adding a context of SENSOR_SERVICE as Sensor Manager
+        val sensorManager = requireActivity().getSystemService(Context.SENSOR_SERVICE) as SensorManager
         viewModelFactory = CatViewModelFactory(
+            sensorManager,
             resources,
             requireContext()
                 .getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
@@ -92,8 +99,12 @@ class CatFragment : Fragment() {
             view.findNavController().navigate(R.id.action_catFragment_to_weightFragment)
         }
 
-
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.onResumeStepCounter()
     }
 
     override fun onDestroyView() {
