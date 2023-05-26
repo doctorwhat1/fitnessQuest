@@ -68,6 +68,10 @@ class CatViewModel(
 
 
     // current values
+    private val _currentActivityMins = MutableLiveData(0)
+    val currentActivityMins: LiveData<Int>
+        get() = _currentActivityMins
+    
     private val _currentWaterCups = MutableLiveData(0)
     val currentWaterCups: LiveData<Int>
         get() = _currentWaterCups
@@ -112,9 +116,9 @@ class CatViewModel(
         TODO("Not yet implemented")
     }*/
 
-    /*fun setCurrentActivity() {
-        TODO("Not yet implemented")
-    }*/
+    fun setCurrentActivity() {
+        _currentActivityMins.value = sharedPreferences.getInt(CURRENT_ACTIVITY_MINS, 0)
+    }
 
     fun setSleepTime() {
         if (sharedPreferences.contains(FALLING_ASLEEP_TIME)

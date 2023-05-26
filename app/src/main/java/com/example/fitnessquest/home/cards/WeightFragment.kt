@@ -27,7 +27,7 @@ class WeightFragment : Fragment() {
 
         binding.btnEnter.setOnClickListener {
             val weight = binding.edittextEditWeight.text.toString()
-            if (weight.toDouble() < 40 || weight.toDouble() > 200) {
+            if (weight.toDouble() < 40.0 || weight.toDouble() > 200.0) {
                 Toast.makeText(context, "Введите корректный вес", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }

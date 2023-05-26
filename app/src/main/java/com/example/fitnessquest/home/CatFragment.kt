@@ -55,8 +55,8 @@ class CatFragment : Fragment() {
         viewModel.setHP()
 
         /*viewModel.setCurrentStrolls()
-        viewModel.setCurrentCalories()
-        viewModel.setCurrentActivity()*/
+        viewModel.setCurrentCalories()*/
+        viewModel.setCurrentActivity()
         viewModel.setSleepTime()
         viewModel.setCurrentWeight()
 
