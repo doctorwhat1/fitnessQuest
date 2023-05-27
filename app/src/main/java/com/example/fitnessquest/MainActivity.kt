@@ -30,6 +30,10 @@ class MainActivity : AppCompatActivity() {
         editor.putBoolean(IS_WEIGHT_REWARD_RECEIVED, false)
         editor.putInt(CURRENT_HP, 20)
         editor.putInt(CURRENT_MANA, 10)
+        editor.putString(BREAKFAST_CALORIES, "0")
+        editor.putString(LUNCH_CALORIES, "0")
+        editor.putString(DINNER_CALORIES, "0")
+        editor.putString(TOTAL_CALORIES, "0")
         editor.apply()
 
     }

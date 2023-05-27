@@ -251,7 +251,7 @@
                     android:id="@+id/tv_current_kilocalories"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:text="@{catViewModel.totalCalories}"
                     android:textAppearance="@style/H6"
                     android:textColor="@color/orange_900" />
 

@@ -68,6 +68,10 @@ class CatViewModel(
 
 
     // current values
+    private val _totalCalories = MutableLiveData("0")
+    val totalCalories: LiveData<String>
+        get() = _totalCalories
+    
     private val _currentActivityMins = MutableLiveData(0)
     val currentActivityMins: LiveData<Int>
         get() = _currentActivityMins
@@ -108,13 +112,10 @@ class CatViewModel(
     }
 
     
-    /*fun setCurrentStrolls() {
-        TODO("Not yet implemented")
-    }*/
 
-    /*fun setCurrentCalories() {
-        TODO("Not yet implemented")
-    }*/
+    fun setTotalCalories() {
+        _totalCalories.value = sharedPreferences.getString(TOTAL_CALORIES, "0")
+    }
 
     fun setCurrentActivity() {
         _currentActivityMins.value = sharedPreferences.getInt(CURRENT_ACTIVITY_MINS, 0)
