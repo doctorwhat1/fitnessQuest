@@ -2,4 +2,54 @@
     <string name="app_name">FitnessQuest</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--shared preferences keys-->
+    <string name="CURRENT_STEPS">CURRENT_STEPS</string>
+    <string name="CURRENT_CALORIES">CURRENT_CALORIES</string>
+    <string name="CURRENT_ACTIVITY">CURRENT_ACTIVITY</string>
+    <string name="CURRENT_WATER_CUPS">CURRENT_WATER_CUPS</string>
+    <string name="CURRENT_SLEEP_TIME">CURRENT_SLEEP_TIME</string>
+    <string name="CURRENT_WEIGHT">CURRENT_WEIGHT</string>
+
+    <!--buttons-->
+    <string name="enter">ввести</string>
+    <string name="change">изменить</string>
+
+    <!--cat fragment-->
+    <string name="cat_sleep_time">%1$s - %2$s</string>
+    <string name="cat_current_water_cups">%d</string>
+    <string name="cat_current_weight">%s кг</string>
+    <string-array name="months">
+        <item>января</item>
+        <item>февраля</item>
+        <item>марта</item>
+        <item>апреля</item>
+        <item>мая</item>
+        <item>июня</item>
+        <item>июля</item>
+        <item>августа</item>
+        <item>сентября</item>
+        <item>октября</item>
+        <item>ноября</item>
+        <item>декабря</item>
+    </string-array>
+    <string-array name="days_of_week">
+        <item>пн</item>
+        <item>вт</item>
+        <item>ср</item>
+        <item>чт</item>
+        <item>пт</item>
+        <item>сб</item>
+        <item>вс</item>
+    </string-array>
+
+    <!--battles fragment-->
+    <string name="battles_battle_number">Битва №4</string>
+    <string name="battles_your_enemy">Ваш противник:</string>
+    <string name="battles_angry_goblin">ЗЛОЙ ГОБЛИН</string>
+    <string name="battles_enemy_hp">100 HP</string>
+    <string name="battles_battle_condition">Для начала битвы нужно иметь 100 HP</string>
+    <string name="battles_your_hp">Ваше здоровье:</string>
+    <string name="battles_start_fight">Начать битву</string>
+
 </resources>

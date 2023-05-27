@@ -1,5 +1,6 @@
 package com.example.fitnessquest
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -27,10 +28,20 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        val sharedPref = getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+
         firebaseAuth = FirebaseAuth.getInstance()
 
         loginEmail = findViewById(R.id.loginEmail)
         loginPassword = findViewById(R.id.loginPassword)
+
+
+        // if user is already logged in
+        if (sharedPref.getString("user","none").toString() != "none") {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
 
         loginBTN = findViewById(R.id.loginBTN)
@@ -44,8 +55,11 @@ class LoginActivity : AppCompatActivity() {
             if (email.isNotEmpty() && password.isNotEmpty()){
                 firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener{
                     if (it.isSuccessful){
+                        editor.putString("user", email)
+                        editor.apply()
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
+
                     } else {
                         Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
                     }

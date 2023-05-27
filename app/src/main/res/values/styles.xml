@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--CatFragment-->
+    <style name="CatTopCardViewStyle" parent="Theme.AppCompat.Light">
+        <item name="cardCornerRadius">0dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="cardBackgroundColor">@color/base_0</item>
+    </style>
+
+    <style name="CatCardViewStyle" parent="Theme.AppCompat.Light">
+        <item name="contentPaddingTop">16dp</item>
+        <item name="contentPaddingBottom">16dp</item>
+        <item name="contentPaddingLeft">16dp</item>
+        <item name="contentPaddingRight">16dp</item>
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardElevation">0dp</item>
+    </style>
+
+    <style name="ThemeOverlay.CardButton" parent="ThemeOverlay.Material3.Button.TextButton">
+        <item name="android:layout_height">24dp</item>
+        <item name="cornerRadius">10dp</item>
+        <item name="android:stateListAnimator">@null</item> <!--disable shadow-->
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:insetTop">0dp</item> <!--no top padding-->
+        <item name="android:insetBottom">0dp</item> <!--no bottom padding-->
+        <item name="android:textAppearance">@style/Button</item>
+    </style>
+
+    <style name="RoundedSquare">
+        <item name="cornerSize">20%</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
+
+
+    <!--BattlesFragment-->
     <style name="DefaultCardViewStyle" parent="Theme.AppCompat.Light">
         <item name="cardCornerRadius">10dp</item>
         <item name="android:layout_marginLeft">16dp</item>
@@ -34,11 +68,24 @@
         <item name="android:insetBottom">0dp</item> <!--no bottom padding-->
     </style>
 
+
     
     <!--Text styles-->
+    <style name="H6">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:typeface">monospace</item>
+    </style>
+
     <style name="BodyRegular">
         <item name="fontFamily">sans-serif</item>
         <item name="android:textSize">16sp</item>
+        <item name="android:typeface">monospace</item>
+    </style>
+
+    <style name="BodyMedium">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:typeface">monospace</item>
     </style>
 
@@ -46,6 +93,7 @@
         <item name="fontFamily">sans-serif-medium</item>
         <item name="android:textSize">14sp</item>
         <item name="android:typeface">monospace</item>
+        <item name="android:textAllCaps">true</item>
     </style>
 
     <style name="Caption">

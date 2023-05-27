@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/catFragment">
+
+    <fragment
+        android:id="@+id/catFragment"
+        android:name="com.example.fitnessquest.home.CatFragment"
+        android:label="fragment_cat"
+        tools:layout="@layout/fragment_cat" >
+        <action
+            android:id="@+id/action_catFragment_to_strollsFragment"
+            app:destination="@id/strollsFragment" />
+        <action
+            android:id="@+id/action_catFragment_to_activityFragment"
+            app:destination="@id/activityFragment" />
+        <action
+            android:id="@+id/action_catFragment_to_foodFragment"
+            app:destination="@id/foodFragment" />
+        <action
+            android:id="@+id/action_catFragment_to_waterFragment"
+            app:destination="@id/waterFragment" />
+        <action
+            android:id="@+id/action_catFragment_to_sleepFragment"
+            app:destination="@id/sleepFragment" />
+        <action
+            android:id="@+id/action_catFragment_to_weightFragment"
+            app:destination="@id/weightFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/battlesFragment"
+        android:name="com.example.fitnessquest.BattlesFragment"
+        android:label="fragment_battles"
+        tools:layout="@layout/fragment_battles" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.fitnessquest.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/activityFragment"
+        android:name="com.example.fitnessquest.home.cards.ActivityFragment"
+        android:label="fragment_activity"
+        tools:layout="@layout/fragment_activity" />
+    <fragment
+        android:id="@+id/strollsFragment"
+        android:name="com.example.fitnessquest.home.cards.StrollsFragment"
+        android:label="fragment_strolls"
+        tools:layout="@layout/fragment_strolls" />
+    <fragment
+        android:id="@+id/foodFragment"
+        android:name="com.example.fitnessquest.home.cards.FoodFragment"
+        android:label="fragment_food"
+        tools:layout="@layout/fragment_food" />
+    <fragment
+        android:id="@+id/waterFragment"
+        android:name="com.example.fitnessquest.home.cards.WaterFragment"
+        android:label="fragment_water"
+        tools:layout="@layout/fragment_water" />
+    <fragment
+        android:id="@+id/sleepFragment"
+        android:name="com.example.fitnessquest.home.cards.SleepFragment"
+        android:label="fragment_sleep"
+        tools:layout="@layout/fragment_sleep" />
+    <fragment
+        android:id="@+id/weightFragment"
+        android:name="com.example.fitnessquest.home.cards.WeightFragment"
+        android:label="fragment_weight"
+        tools:layout="@layout/fragment_weight" />
+</navigation>
