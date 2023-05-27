@@ -32,6 +32,18 @@
         <item name="cornerFamily">rounded</item>
     </style>
 
+    <style name="ThemeOverlay.WarmupButton" parent="ThemeOverlay.Material3.Button.TextButton">
+        <item name="android:backgroundTint">@color/green_500</item>
+        <item name="cornerRadius">10dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:stateListAnimator">@null</item> <!--disable shadow-->
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:insetTop">0dp</item> <!--no top padding-->
+        <item name="android:insetBottom">0dp</item> <!--no bottom padding-->
+    </style>
+
 
     <!--BattlesFragment-->
     <style name="DefaultCardViewStyle" parent="Theme.AppCompat.Light">
@@ -99,6 +111,12 @@
     <style name="Caption">
         <item name="fontFamily">sans-serif</item>
         <item name="android:textSize">12sp</item>
+        <item name="android:typeface">monospace</item>
+    </style>
+
+    <style name="Subtitle">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:typeface">monospace</item>
     </style>
     

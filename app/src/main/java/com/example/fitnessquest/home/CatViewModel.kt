@@ -57,15 +57,10 @@ class CatViewModel(
     // ------------------------------------------------------------------------------------------------
 
 
-    // current indicators
+    // current HP
     private val _currentHP = MutableLiveData(0)
     val currentHP: LiveData<Int>
         get() = _currentHP
-
-    private val _currentMana = MutableLiveData(0)
-    val currentMana: LiveData<Int>
-        get() = _currentMana
-
 
     // current values
     private val _totalCalories = MutableLiveData("0")
@@ -105,10 +100,6 @@ class CatViewModel(
     
     fun setHP() {
         _currentHP.value = sharedPreferences.getInt(CURRENT_HP, 0)
-    }
-    
-    fun setMana() {
-        _currentMana.value = sharedPreferences.getInt(CURRENT_MANA, 0)
     }
 
     
@@ -165,6 +156,15 @@ class CatViewModel(
 
     fun setIsWeightRewardReceived() {
         _isWeightRewardReceived.value = sharedPreferences.getBoolean(IS_WEIGHT_REWARD_RECEIVED, false)
+    }
+
+    fun increaseHP() {
+        if (_currentHP.value == 100) return
+
+        val editor = sharedPreferences.edit()
+        _currentHP.value = if (_currentHP.value!! > 75) 100 else _currentHP.value!! + 25
+        editor.putInt(CURRENT_HP, _currentHP.value!!)
+        editor.apply()
     }
 
 }

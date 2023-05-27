@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.fitnessquest.APP_PREFERENCES
+import com.example.fitnessquest.CURRENT_HP
 import com.example.fitnessquest.R
 import com.example.fitnessquest.databinding.FragmentCatBinding
 
@@ -23,18 +24,12 @@ class CatFragment : Fragment() {
     lateinit var viewModel: CatViewModel
     lateinit var viewModelFactory: CatViewModelFactory
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentCatBinding.inflate(inflater, container, false)
         val view = binding.root
-
-        /*val steps = requireContext()
-            .getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
-            .getInt(PREVIOUS_TOTAL_STEPS, 0)
-        Toast.makeText(context, "steps in sharef pref: ${steps}", Toast.LENGTH_SHORT).show()*/
 
         // Adding a context of SENSOR_SERVICE as Sensor Manager
         val sensorManager = requireActivity().getSystemService(Context.SENSOR_SERVICE) as SensorManager
@@ -50,11 +45,10 @@ class CatFragment : Fragment() {
         binding.catViewModel = viewModel // set the data binding variable
         binding.lifecycleOwner = viewLifecycleOwner // lets the layout respond to live data updates
 
-        // cat indicators
-        viewModel.setMana()
+        // cat HP
         viewModel.setHP()
 
-        /*viewModel.setCurrentStrolls()*/
+
         viewModel.setTotalCalories()
         viewModel.setCurrentActivity()
         viewModel.setSleepTime()
@@ -98,6 +92,8 @@ class CatFragment : Fragment() {
         binding.btnInputWeight.setOnClickListener {
             view.findNavController().navigate(R.id.action_catFragment_to_weightFragment)
         }
+
+        binding.btnPerformWarmup.setOnClickListener { viewModel.increaseHP() }
 
         return view
     }

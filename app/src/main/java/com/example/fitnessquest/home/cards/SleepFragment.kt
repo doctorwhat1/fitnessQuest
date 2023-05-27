@@ -33,7 +33,7 @@ class SleepFragment : Fragment() {
             editor.putString(WAKEUP_TIME, wakeupTime)
 
             if (!sharedPref.getBoolean(IS_SLEEP_TIME_REWARD_RECEIVED, true)) {
-                editor.putInt(CURRENT_MANA, sharedPref.getInt(CURRENT_MANA, 0) + 50)
+                editor.putInt(CURRENT_HP, sharedPref.getInt(CURRENT_HP, 0) + 50)
             }
             editor.putBoolean(IS_SLEEP_TIME_REWARD_RECEIVED, true)
 

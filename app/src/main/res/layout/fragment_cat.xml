@@ -37,6 +37,8 @@
                     android:layout_width="56dp"
                     android:layout_height="56dp"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"
                     android:padding="0dp"
                     android:src="@drawable/cat_image2"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -52,61 +54,61 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginEnd="8dp"
                     android:foregroundGravity="center_vertical"
                     android:progress="@{catViewModel.currentHP}"
                     android:progressDrawable="@drawable/bg_pb_hp"
-                    app:layout_constraintBottom_toTopOf="@+id/pb_mana"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/iv_cat"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ProgressBar
-                    android:id="@+id/pb_mana"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="0dp"
-                    android:layout_height="16dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:progress="@{catViewModel.currentMana}"
-                    android:progressDrawable="@drawable/bg_pb_mana"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_pb_hp"
                     app:layout_constraintStart_toEndOf="@+id/iv_cat"
-                    app:layout_constraintTop_toBottomOf="@+id/pb_hp" />
+                    app:layout_constraintTop_toBottomOf="@+id/iv_calendar_icon" />
+
+                <ImageView
+                    android:id="@+id/iv_calendar_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:src="@drawable/ic_cat_calendar"
+                    app:layout_constraintBottom_toTopOf="@+id/pb_hp"
+                    app:layout_constraintStart_toEndOf="@+id/iv_cat"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:tint="@color/base_900" />
+
+                <TextView
+                    android:id="@+id/tv_current_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="@{catViewModel.getCurrentDate()}"
+                    android:textAppearance="@style/H6"
+                    android:textColor="@color/base_900"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_calendar_icon"
+                    app:layout_constraintStart_toEndOf="@+id/iv_calendar_icon"
+                    app:layout_constraintTop_toTopOf="@+id/iv_calendar_icon" />
+
+                <TextView
+                    android:id="@+id/tv_pb_hp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/bg_progress_text"
+                    android:backgroundTint="@color/base_500"
+                    android:includeFontPadding="false"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@{@string/cat_hp_progress_bar(catViewModel.currentHP)}"
+                    android:textAppearance="@style/Subtitle"
+                    android:textColor="@color/base_0"
+                    app:layout_constraintBottom_toBottomOf="@+id/pb_hp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/pb_hp"
+                    app:layout_constraintVertical_bias="1.0" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
-
-        <ImageView
-            android:id="@+id/iv_calendar_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/ic_cat_calendar"
-            app:layout_constraintEnd_toStartOf="@+id/tv_current_date"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cv_cat_info"
-            app:tint="@color/base_900" />
-
-        <TextView
-            android:id="@+id/tv_current_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="@{catViewModel.getCurrentDate()}"
-            android:textAppearance="@style/H6"
-            android:textColor="@color/base_900"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_calendar_icon"
-            app:layout_constraintStart_toEndOf="@+id/iv_calendar_icon"
-            app:layout_constraintTop_toTopOf="@+id/iv_calendar_icon" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_strolls"
@@ -634,7 +636,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="@{catViewModel.isSleepTimeRewardReceived() ? View.GONE : View.VISIBLE }"
-                    android:background="@drawable/bd_reward"
+                    android:background="@drawable/bg_reward"
                     android:backgroundTint="@color/purple_300"
                     android:padding="4dp"
                     android:text="+50MN"
@@ -727,7 +729,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="@{catViewModel.isWeightRewardReceived() ? View.GONE : View.VISIBLE}"
-                    android:background="@drawable/bd_reward"
+                    android:background="@drawable/bg_reward"
                     android:backgroundTint="@color/base_300"
                     android:padding="4dp"
                     android:text="+50HP"
@@ -788,10 +790,23 @@
             app:flow_maxElementsWrap="2"
             app:flow_verticalGap="16dp"
             app:flow_wrapMode="chain"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btn_perform_warmup"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_calendar_icon" />
+            app:layout_constraintTop_toBottomOf="@+id/cv_cat_info" />
+
+        <Button
+            android:id="@+id/btn_perform_warmup"
+            style="@style/ThemeOverlay.WarmupButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="выполнить разминку +25HP"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -3,13 +3,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <!--shared preferences keys-->
-    <string name="CURRENT_STEPS">CURRENT_STEPS</string>
-    <string name="CURRENT_CALORIES">CURRENT_CALORIES</string>
-    <string name="CURRENT_ACTIVITY">CURRENT_ACTIVITY</string>
-    <string name="CURRENT_WATER_CUPS">CURRENT_WATER_CUPS</string>
-    <string name="CURRENT_SLEEP_TIME">CURRENT_SLEEP_TIME</string>
-    <string name="CURRENT_WEIGHT">CURRENT_WEIGHT</string>
+    <!--progress bar-->
+    <string name="cat_hp_progress_bar">%s/100HP</string>
 
     <!--buttons-->
     <string name="enter">ввести</string>

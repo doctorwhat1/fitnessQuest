@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.fitnessquest.*
 import com.example.fitnessquest.databinding.FragmentWeightBinding
-import com.example.fitnessquest.home.CatViewModel
+
 
 
 class WeightFragment : Fragment() {
@@ -39,7 +39,7 @@ class WeightFragment : Fragment() {
 
             if (sharedPref.contains(IS_WEIGHT_REWARD_RECEIVED)
                 && !sharedPref.getBoolean(IS_WEIGHT_REWARD_RECEIVED, true)) {
-                editor.putInt(CURRENT_MANA, sharedPref.getInt(CURRENT_MANA, 0) + 50)
+                editor.putInt(CURRENT_HP, (sharedPref.getInt(CURRENT_HP, 0) + 25) % 100)
             }
             editor.putBoolean(IS_WEIGHT_REWARD_RECEIVED, true)
 
