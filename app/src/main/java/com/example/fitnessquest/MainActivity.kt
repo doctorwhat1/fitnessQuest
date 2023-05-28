@@ -3,6 +3,7 @@ package com.example.fitnessquest
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -26,12 +27,19 @@ class MainActivity : AppCompatActivity() {
         // FOR TESTING !!! DELETE ON RELEASE
         val sharedPreferences = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
-        editor.putBoolean(IS_SLEEP_TIME_REWARD_RECEIVED, false)
-        editor.putBoolean(IS_WEIGHT_REWARD_RECEIVED, false)
         editor.putInt(CURRENT_HP, 28)
+        editor.putFloat(INITIAL_TOTAL_STEPS, 0f)
+        editor.putInt(CURRENT_WATER_CUPS, 0)
+        editor.putInt(CURRENT_ACTIVITY_MINS, 0)
+        editor.putString(CURRENT_WEIGHT, resources.getString(R.string.cat_weight_template))
+        editor.putString(FALLING_ASLEEP_TIME, resources.getString(R.string.cat_time_template))
+        editor.putString(WAKEUP_TIME, resources.getString(R.string.cat_time_template))
         editor.putString(BREAKFAST_CALORIES, "0")
         editor.putString(LUNCH_CALORIES, "0")
         editor.putString(DINNER_CALORIES, "0")
+        editor.putBoolean(IS_BREAKFAST_ENTERED, false)
+        editor.putBoolean(IS_LUNCH_ENTERED, false)
+        editor.putBoolean(IS_DINNER_ENTERED, false)
         editor.putString(TOTAL_CALORIES, "0")
         editor.apply()
 

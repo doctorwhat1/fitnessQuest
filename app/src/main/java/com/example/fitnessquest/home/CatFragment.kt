@@ -55,8 +55,9 @@ class CatFragment : Fragment() {
         viewModel.setCurrentWeight()
 
         // rewards
-        viewModel.setIsSleepRewardReceived()
-        viewModel.setIsWeightRewardReceived()
+        viewModel.setIsBreakfastEntered()
+        viewModel.setIsLunchEntered()
+        viewModel.setIsDinnerEntered()
 
 
         // set cards on click

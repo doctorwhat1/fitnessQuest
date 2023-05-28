@@ -35,13 +35,12 @@ class WeightFragment : Fragment() {
 
             val sharedPref = requireContext().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
             val editor =  sharedPref.edit()
-            editor.putString(CURRENT_WEIGHT, weight)
 
-            if (sharedPref.contains(IS_WEIGHT_REWARD_RECEIVED)
-                && !sharedPref.getBoolean(IS_WEIGHT_REWARD_RECEIVED, true)) {
-                editor.putInt(CURRENT_HP, (sharedPref.getInt(CURRENT_HP, 0) + 25) % 100)
+            val weightTemplate = resources.getString(R.string.cat_weight_template)
+            if (sharedPref.getString(CURRENT_WEIGHT, weightTemplate) == weightTemplate) {
+                editor.putInt(CURRENT_HP, (sharedPref.getInt(CURRENT_HP, 0) + 25))
             }
-            editor.putBoolean(IS_WEIGHT_REWARD_RECEIVED, true)
+            editor.putString(CURRENT_WEIGHT, weight)
 
             editor.apply()
         }

@@ -33,7 +33,11 @@ class ActivityFragment : Fragment() {
 
             val sharedPref = requireContext().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
             val editor =  sharedPref.edit()
-            editor.putInt(CURRENT_ACTIVITY_MINS, sharedPref.getInt(CURRENT_ACTIVITY_MINS, 0) + enteredActivityMins)
+            val totalActivityMins = sharedPref.getInt(CURRENT_ACTIVITY_MINS, 0) + enteredActivityMins
+            editor.putInt(CURRENT_ACTIVITY_MINS, totalActivityMins)
+            if (totalActivityMins - enteredActivityMins < 90 && totalActivityMins >= 90) {
+                editor.putInt(CURRENT_HP, sharedPref.getInt(CURRENT_HP, 0) + 25)
+            }
             editor.apply()
         }
         

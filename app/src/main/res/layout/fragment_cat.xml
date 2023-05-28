@@ -205,6 +205,20 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraint_layout_progress_strolls" />
 
+                <TextView
+                    android:id="@+id/tv_strolls_reward"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_reward"
+                    android:backgroundTint="@color/green_300"
+                    android:paddingStart="4dp"
+                    android:paddingRight="4dp"
+                    android:text="+25HP"
+                    android:visibility="@{catViewModel.currentSteps &lt; 6000 ? View.VISIBLE : View.GONE }"
+                    android:textColor="@color/base_0"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
                 <androidx.constraintlayout.helper.widget.Flow
                     android:id="@+id/flow_strolls_card_description"
                     android:layout_width="0dp"
@@ -218,6 +232,16 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_chainStyle="spread_inside" />
+
+                <ImageView
+                    android:id="@+id/iv_strolls_check_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cat_check"
+                    android:visibility="@{catViewModel.currentSteps &lt; 6000 ? View.GONE : View.VISIBLE }"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:tint="@color/base_0" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
@@ -305,6 +329,91 @@
                     android:textAppearance="@style/BodyMedium"
                     android:textColor="@color/base_700" />
 
+                <TextView
+                    android:id="@+id/tv_breakfast_reward"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_reward"
+                    android:backgroundTint="@color/orange_800"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:text="+10HP"
+                    android:textAppearance="@style/Caption"
+                    android:textColor="@color/base_0"
+                    android:visibility="@{catViewModel.isBreakfastEntered ? View.GONE : View.VISIBLE }"
+                    app:layout_constraintBottom_toBottomOf="@+id/flow_meals"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/flow_meals"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/tv_lunch_reward"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_reward"
+                    android:backgroundTint="@color/orange_800"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:text="+10HP"
+                    android:textAppearance="@style/Caption"
+                    android:textColor="@color/base_0"
+                    android:visibility="@{catViewModel.isLunchEntered ? View.GONE : View.VISIBLE }"
+                    app:layout_constraintBottom_toBottomOf="@+id/flow_meals"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/flow_meals" />
+
+                <TextView
+                    android:id="@+id/tv_dinner_reward"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_reward"
+                    android:backgroundTint="@color/orange_800"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:text="+10HP"
+                    android:textAppearance="@style/Caption"
+                    android:textColor="@color/base_0"
+                    android:visibility="@{catViewModel.isDinnerEntered ? View.GONE : View.VISIBLE }"
+                    app:layout_constraintBottom_toBottomOf="@+id/flow_meals"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/flow_meals"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <ImageView
+                    android:id="@+id/iv_breakfast_check_icon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_cat_check"
+                    android:visibility="@{catViewModel.isBreakfastEntered ? View.VISIBLE : View.GONE }"
+                    app:layout_constraintBottom_toBottomOf="@+id/flow_meals"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/flow_meals"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:tint="@color/base_800" />
+
+                <ImageView
+                    android:id="@+id/iv_lunch_check_icon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_cat_check"
+                    android:visibility="@{catViewModel.isLunchEntered ? View.VISIBLE : View.GONE }"
+                    app:layout_constraintBottom_toBottomOf="@+id/flow_meals"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/flow_meals"
+                    app:tint="@color/base_800" />
+
+                <ImageView
+                    android:id="@+id/iv_dinner_check_icon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_cat_check"
+                    android:visibility="@{catViewModel.isDinnerEntered ? View.VISIBLE : View.GONE }"
+                    app:layout_constraintBottom_toBottomOf="@+id/flow_meals"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/flow_meals"
+                    app:layout_constraintVertical_bias="1.0"
+                    app:tint="@color/base_800" />
+
                 <Button
                     android:id="@+id/btn_input_food"
                     style="@style/ThemeOverlay.CardButton"
@@ -349,14 +458,12 @@
 
                 <androidx.constraintlayout.helper.widget.Flow
                     android:id="@+id/flow_meals"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     app:constraint_referenced_ids="tv_breakfast,tv_lunch,tv_dinner"
                     app:flow_horizontalAlign="start"
                     app:layout_constraintBottom_toTopOf="@+id/btn_input_food"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/flow_food_progress" />
 
@@ -421,6 +528,31 @@
                     android:text="мин"
                     android:textAppearance="@style/BodyMedium"
                     android:textColor="@color/base_700" />
+
+                <TextView
+                    android:id="@+id/tv_activity_reward"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_reward"
+                    android:backgroundTint="@color/red_300"
+                    android:padding="4dp"
+                    android:text="+25HP"
+                    android:textColor="@color/base_0"
+                    android:visibility="@{catViewModel.currentActivityMins &lt; 90 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/flow_activity_progress"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/flow_activity_progress" />
+
+                <ImageView
+                    android:id="@+id/iv_activity_check_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cat_check"
+                    android:visibility="@{catViewModel.currentActivityMins &lt; 90 ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/flow_activity_progress"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/flow_activity_progress"
+                    app:tint="@color/base_800" />
 
                 <Button
                     android:id="@+id/btn_input_activity"
@@ -527,6 +659,31 @@
                     android:textAppearance="@style/BodyMedium"
                     android:textColor="@color/base_700" />
 
+                <TextView
+                    android:id="@+id/tv_water_cups_reward"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_reward"
+                    android:backgroundTint="@color/blue_300"
+                    android:padding="4dp"
+                    android:text="+25HP"
+                    android:textColor="@color/base_0"
+                    android:visibility="@{catViewModel.currentWaterCups &lt; 8 ? View.VISIBLE: View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/flow_water_progress"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/flow_water_progress" />
+
+                <ImageView
+                    android:id="@+id/iv_water_cups_check_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cat_check"
+                    android:visibility="@{catViewModel.currentWaterCups &lt; 8 ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/flow_water_progress"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/flow_water_progress"
+                    app:tint="@color/base_800" />
+
                 <ImageButton
                     android:id="@+id/ibtn_decrease_water_cups"
                     android:layout_width="0dp"
@@ -570,7 +727,7 @@
                     app:flow_verticalAlign="center"
                     app:layout_constraintBottom_toTopOf="@+id/flow_water_buttons"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/flow_water_card_description" />
 
@@ -635,12 +792,12 @@
                     android:id="@+id/tv_sleep_time_reward"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="@{catViewModel.isSleepTimeRewardReceived() ? View.GONE : View.VISIBLE }"
                     android:background="@drawable/bg_reward"
                     android:backgroundTint="@color/purple_300"
                     android:padding="4dp"
-                    android:text="+50MN"
+                    android:text="+25HP"
                     android:textColor="@color/base_0"
+                    android:visibility="@{(catViewModel.fallingAsleepTime == @string/cat_time_template) ? View.VISIBLE : View.GONE }"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -650,10 +807,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_cat_check"
-                    android:visibility="@{catViewModel.isSleepTimeRewardReceived() ? View.VISIBLE : View.GONE }"
+                    android:visibility="@{(catViewModel.fallingAsleepTime == @string/cat_time_template) ? View.GONE : View.VISIBLE }"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/base_800" />
 
                 <Button
                     android:id="@+id/btn_change_sleep_time"
@@ -728,12 +886,12 @@
                     android:id="@+id/tv_weight_reward"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="@{catViewModel.isWeightRewardReceived() ? View.GONE : View.VISIBLE}"
                     android:background="@drawable/bg_reward"
                     android:backgroundTint="@color/base_300"
                     android:padding="4dp"
-                    android:text="+50HP"
+                    android:text="+25HP"
                     android:textColor="@color/base_0"
+                    android:visibility="@{catViewModel.currentWeight.equals(@string/cat_weight_template) ? View.VISIBLE : View.GONE }"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -756,10 +914,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_cat_check"
-                    android:visibility="@{catViewModel.isWeightRewardReceived() ? View.VISIBLE : View.GONE}"
+                    android:visibility="@{catViewModel.currentWeight.equals(@string/cat_weight_template) ? View.GONE : View.VISIBLE}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/base_800" />
 
                 <androidx.constraintlayout.helper.widget.Flow
                     android:id="@+id/flow_weight_card_description"
@@ -777,7 +936,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
-        <androidx.constraintlayout.helper.widget.Flow
+         <androidx.constraintlayout.helper.widget.Flow
             android:id="@+id/flow_cat_cards"
             android:layout_width="0dp"
             android:layout_height="0dp"

@@ -40,7 +40,12 @@ class CatViewModel(
             editor.apply()
         }
 
+        val prevCurrentSteps = _currentSteps.value!!
         _currentSteps.value = (totalSteps - initialTotalSteps).toInt()
+        if (prevCurrentSteps < 6000 && _currentSteps.value!! >= 6000) {
+            _currentHP.value = _currentHP.value!! + 25
+        }
+
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {}
@@ -89,13 +94,17 @@ class CatViewModel(
 
 
     // rewards
-    private val _isWeightRewardReceived = MutableLiveData(false)
-    val isWeightRewardReceived: LiveData<Boolean>
-        get() = _isWeightRewardReceived
+    private val _isBreakfastEntered = MutableLiveData(false)
+    val isBreakfastEntered: LiveData<Boolean>
+        get() = _isBreakfastEntered
 
-    private val _isSleepTimeRewardReceived = MutableLiveData(false)
-    val isSleepTimeRewardReceived: LiveData<Boolean>
-        get() = _isSleepTimeRewardReceived
+    private val _isLunchEntered = MutableLiveData(false)
+    val isLunchEntered: LiveData<Boolean>
+        get() = _isLunchEntered
+
+    private val _isDinnerEntered = MutableLiveData(false)
+    val isDinnerEntered: LiveData<Boolean>
+        get() = _isDinnerEntered
 
     
     fun setHP() {
@@ -113,25 +122,34 @@ class CatViewModel(
     }
 
     fun setSleepTime() {
-        if (sharedPreferences.contains(FALLING_ASLEEP_TIME)
-            && sharedPreferences.contains(WAKEUP_TIME)) {
-            _fallingAsleepTime.value = sharedPreferences.getString(FALLING_ASLEEP_TIME, "**-**")
-            _wakeupTime.value = sharedPreferences.getString(WAKEUP_TIME, "**-**")
-        }
+        _fallingAsleepTime.value = sharedPreferences.getString(FALLING_ASLEEP_TIME, resources.getString(R.string.cat_time_template))
+        _wakeupTime.value = sharedPreferences.getString(WAKEUP_TIME, resources.getString(R.string.cat_time_template))
     }
 
     fun setCurrentWeight() {
-        if (sharedPreferences.contains(CURRENT_WEIGHT)) {
-            _currentWeight.value = sharedPreferences.getString(CURRENT_WEIGHT, "")
-        }
+        _currentWeight.value = sharedPreferences.getString(CURRENT_WEIGHT, resources.getString(R.string.cat_weight_template))
     }
 
     fun increaseWaterCups() {
         _currentWaterCups.value = (_currentWaterCups.value ?: 0) + 1
+        if (_currentHP.value!! > 100) return
+
+        if ((_currentWaterCups.value ?: 0) == 8) {
+            _currentHP.value = if (_currentHP.value!! >= 75) 100 else _currentHP.value!! + 25
+            val editor = sharedPreferences.edit()
+            editor.putInt(CURRENT_HP, _currentHP.value!!)
+            editor.apply()
+        }
     }
 
     fun decreaseWaterCups() {
         if (currentWaterCups.value == 0) return
+        if ((_currentWaterCups.value ?: 0) == 8) {
+            _currentHP.value = _currentHP.value!! - 25
+            val editor = sharedPreferences.edit()
+            editor.putInt(CURRENT_HP, _currentHP.value!!)
+            editor.apply()
+        }
         _currentWaterCups.value = (_currentWaterCups.value ?: 0) - 1
     }
 
@@ -149,13 +167,17 @@ class CatViewModel(
 
         return "$day $month, $dayOfWeek"
     }
-
-    fun setIsSleepRewardReceived() {
-        _isSleepTimeRewardReceived.value = sharedPreferences.getBoolean(IS_SLEEP_TIME_REWARD_RECEIVED, false)
+    
+    fun setIsBreakfastEntered() {
+        _isBreakfastEntered.value = sharedPreferences.getBoolean(IS_BREAKFAST_ENTERED, false)
     }
 
-    fun setIsWeightRewardReceived() {
-        _isWeightRewardReceived.value = sharedPreferences.getBoolean(IS_WEIGHT_REWARD_RECEIVED, false)
+    fun setIsLunchEntered() {
+        _isLunchEntered.value = sharedPreferences.getBoolean(IS_LUNCH_ENTERED, false)
+    }
+
+    fun setIsDinnerEntered() {
+        _isDinnerEntered.value = sharedPreferences.getBoolean(IS_DINNER_ENTERED, false)
     }
 
     fun increaseHP() {

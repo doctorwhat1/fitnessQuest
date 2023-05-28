@@ -64,23 +64,34 @@ class FoodFragment : Fragment() {
             }
 
             val meal = binding.rgMeals.checkedRadioButtonId
-
-            val sharedPref = requireContext().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
-            val editor =  sharedPref.edit()
+            
+            val editor =  sharedPreferences.edit()
 
             var totalCaloriesToRemove = 0.0
             when(meal) {
                 R.id.rbtn_breakfast -> {
+                    if (!sharedPreferences.getBoolean(IS_BREAKFAST_ENTERED, false)) {
+                        editor.putInt(CURRENT_HP, sharedPreferences.getInt(CURRENT_HP, 0) + 10)
+                    }
+                    editor.putBoolean(IS_BREAKFAST_ENTERED, true)
                     totalCaloriesToRemove = _breakfastCalories.value!!.toDouble()
                     editor.putString(BREAKFAST_CALORIES, enteredCalories)
                     _breakfastCalories.value = enteredCalories
                 }
                 R.id.rbtn_lunch -> {
+                    if (!sharedPreferences.getBoolean(IS_LUNCH_ENTERED, false)) {
+                        editor.putInt(CURRENT_HP, sharedPreferences.getInt(CURRENT_HP, 0) + 10)
+                    }
+                    editor.putBoolean(IS_LUNCH_ENTERED, true)
                     totalCaloriesToRemove = _lunchCalories.value!!.toDouble()
                     editor.putString(LUNCH_CALORIES, enteredCalories)
                     _lunchCalories.value = enteredCalories
                 }
                 R.id.rbtn_dinner -> {
+                    if (!sharedPreferences.getBoolean(IS_DINNER_ENTERED, false)) {
+                        editor.putInt(CURRENT_HP, sharedPreferences.getInt(CURRENT_HP, 0) + 10)
+                    }
+                    editor.putBoolean(IS_DINNER_ENTERED, true)
                     totalCaloriesToRemove = _dinnerCalories.value!!.toDouble()
                     editor.putString(DINNER_CALORIES, enteredCalories)
                     _dinnerCalories.value = enteredCalories
