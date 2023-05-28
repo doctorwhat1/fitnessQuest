@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "390708089881",
+    "project_id": "fitnessquest-86c5f",
+    "storage_bucket": "fitnessquest-86c5f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:390708089881:android:bc7fb7708c6d8358f08688",
+        "android_client_info": {
+          "package_name": "com.example.fitnessquest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "390708089881-8ikupg6vkol2jq1afvb26jqp87eb7ts1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZXYcT6Zumajtv3s7laOhP_VoPPx7I1OY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "390708089881-8ikupg6vkol2jq1afvb26jqp87eb7ts1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

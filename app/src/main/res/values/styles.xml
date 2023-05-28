@@ -81,7 +81,7 @@
     </style>
 
 
-    
+
     <!--Text styles-->
     <style name="H6">
         <item name="fontFamily">sans-serif-medium</item>
@@ -119,5 +119,5 @@
         <item name="android:textSize">14sp</item>
         <item name="android:typeface">monospace</item>
     </style>
-    
+
 </resources>
