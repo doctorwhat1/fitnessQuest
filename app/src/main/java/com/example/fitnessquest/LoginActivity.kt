@@ -38,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
 
 
         // if user is already logged in
-        // TODO ADD SHAREDPREF
+        // TODO ADD SHAREDPREF CHECK
         if (sharedPref.getString("user","none").toString() != "none") {
             val intent = Intent(this, OnboardingActivity::class.java)
             startActivity(intent)
@@ -58,7 +58,8 @@ class LoginActivity : AppCompatActivity() {
                     if (it.isSuccessful){
                         editor.putString("user", email)
                         editor.apply()
-                        val intent = Intent(this, MainActivity::class.java)
+                        //TODO ADD SHARDPREF CHECK
+                        val intent = Intent(this, OnboardingActivity::class.java)
                         startActivity(intent)
 
                     } else {
