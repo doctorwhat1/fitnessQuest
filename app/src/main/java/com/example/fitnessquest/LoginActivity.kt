@@ -38,8 +38,9 @@ class LoginActivity : AppCompatActivity() {
 
 
         // if user is already logged in
+        // TODO ADD SHAREDPREF
         if (sharedPref.getString("user","none").toString() != "none") {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, OnboardingActivity::class.java)
             startActivity(intent)
         }
 

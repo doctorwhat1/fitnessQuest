@@ -52,4 +52,8 @@
     <string name="battles_your_hp">Ваше здоровье:</string>
     <string name="battles_start_fight">Начать битву</string>
 
+    <!-- onboarding -->
+    <string name="get_started">Get Started</string>
+    <string name="skip">Skip</string>
+
 </resources>

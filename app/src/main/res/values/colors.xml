@@ -78,4 +78,14 @@
     <color name="purple_100">#CDC9F6</color>
     <color name="purple_50">#EBEAFC</color>
 
+
+
+    <!--Custom Colors 1.41 ... #643AE7 ... #FF8F00 ... #FFD299 ... #FFFFFF ... #060906 ... #464747 ...-->
+    <color name="custom_color_primary">#00C164</color>
+    <color name="custom_color_secondary">#FF920F</color>
+    <color name="custom_color_secondary_light">#FEB895</color>
+    <color name="custom_color_background">#FFFFFF</color>
+    <color name="custom_color_text_primary">#505050</color>
+    <color name="custom_color_text_secondary">#8A8A8A</color>
+
 </resources>
