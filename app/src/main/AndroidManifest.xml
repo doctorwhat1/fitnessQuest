@@ -27,13 +27,13 @@
             android:name=".SignupActivity"
             android:exported="false" />
         <activity
-            android:name=".Workout"
+            android:name=".WorkoutActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true"/>
         <activity
-            android:name=".OnboardingActivity"
+            android:name=".onboarding.OnboardingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

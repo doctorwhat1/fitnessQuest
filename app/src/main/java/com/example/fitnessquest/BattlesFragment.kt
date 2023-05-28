@@ -30,11 +30,15 @@ class BattlesFragment : Fragment() {
         val lvl = sharedPref.getInt("lvl",1)
         binding.tvCurrentFight.text = "Битва №$lvl"
 
+        binding.pbPersonHp.max = 100
+        binding.pbPersonHp.progress = sharedPref.getInt(CURRENT_HP, 0)
+        binding.tvHpProgress.text = "${sharedPref.getInt(CURRENT_HP, 0).toString()}/100HP"
+
         binding.btnStartBattle.setOnClickListener {
             // add HP and mana check
-            Toast.makeText(context, "Workout Start!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "WorkoutActivity Start!", Toast.LENGTH_SHORT).show()
 
-            val intent = Intent(activity, Workout::class.java)
+            val intent = Intent(activity, WorkoutActivity::class.java)
             startActivity(intent)
         }
 

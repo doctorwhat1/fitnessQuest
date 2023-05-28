@@ -418,7 +418,8 @@
                     android:id="@+id/btn_input_food"
                     style="@style/ThemeOverlay.CardButton"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="28dp"
+                    android:layout_marginTop="4dp"
                     android:backgroundTint="@color/orange_900"
                     android:text="ввести"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -443,7 +444,7 @@
 
                 <androidx.constraintlayout.helper.widget.Flow
                     android:id="@+id/flow_food_progress"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     app:constraint_referenced_ids="tv_current_kilocalories,tv_kilocalories_slash,tv_required_kilocalories,tv_kcal"
@@ -452,7 +453,7 @@
                     app:flow_verticalAlign="center"
                     app:layout_constraintBottom_toTopOf="@+id/flow_meals"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/flow_food_card_description" />
 
@@ -558,7 +559,7 @@
                     android:id="@+id/btn_input_activity"
                     style="@style/ThemeOverlay.CardButton"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="28dp"
                     android:backgroundTint="@color/red_400"
                     android:text="ввести"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -687,21 +688,27 @@
                 <ImageButton
                     android:id="@+id/ibtn_decrease_water_cups"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="28dp"
+                    android:background="@drawable/bg_water_button"
                     android:backgroundTint="@color/blue_500"
+                    android:onClick="@{ () -> catViewModel.decreaseWaterCups() }"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
                     android:src="@drawable/ic_baseline_remove_24"
-                    app:tint="@color/base_0"
-                    android:onClick="@{ () -> catViewModel.decreaseWaterCups() }" />
+                    app:tint="@color/base_0" />
 
                 <ImageButton
                     android:id="@+id/ibtn_increase_water_cups"
                     style="@style/ThemeOverlay.CardButton"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="28dp"
+                    android:background="@drawable/bg_water_button"
                     android:backgroundTint="@color/blue_500"
+                    android:onClick="@{ () -> catViewModel.increaseWaterCups() }"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
                     android:src="@drawable/ic_baseline_add_24"
-                    app:tint="@color/base_0"
-                    android:onClick="@{ () -> catViewModel.increaseWaterCups() }"/>
+                    app:tint="@color/base_0" />
 
                 <androidx.constraintlayout.helper.widget.Flow
                     android:id="@+id/flow_water_card_description"
@@ -736,6 +743,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:constraint_referenced_ids="ibtn_decrease_water_cups,ibtn_increase_water_cups"
+                    app:flow_horizontalGap="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -817,7 +825,7 @@
                     android:id="@+id/btn_change_sleep_time"
                     style="@style/ThemeOverlay.CardButton"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="28dp"
                     android:backgroundTint="@color/purple_400"
                     android:text="изменить"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -900,7 +908,7 @@
                     android:id="@+id/btn_input_weight"
                     style="@style/ThemeOverlay.CardButton"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="28dp"
                     android:backgroundTint="@color/base_500"
                     android:text="ввести"
                     app:layout_constraintBottom_toBottomOf="parent"

@@ -8,19 +8,16 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import okhttp3.OkHttpClient
-import okhttp3.Request
 import org.json.JSONObject
 import pl.droidsonroids.gif.GifDrawable
 import pl.droidsonroids.gif.GifImageView
 
 
-class Workout : AppCompatActivity(), SensorEventListener {
+class WorkoutActivity : AppCompatActivity(), SensorEventListener {
 
 
     // надо бы это как то свернуть
@@ -161,7 +158,7 @@ class Workout : AppCompatActivity(), SensorEventListener {
 //pictures array
 
         val workoutMap = HashMap<String, Int>()
-        workoutMap["Pushups"] = R.drawable.pushup1
+        workoutMap["Pushups"] = R.drawable.pushup
         workoutMap["Concentration Curls"] = R.drawable.concentration_curl
         workoutMap["Decline Pushup"] = R.drawable.decline_pushup
         workoutMap["Hammer Curls"] = R.drawable.hammer_curl2
@@ -209,7 +206,7 @@ class Workout : AppCompatActivity(), SensorEventListener {
 
         var gifname = "pushup"
 
-        var gifFromResource = GifDrawable(resources, R.drawable.pushup1)
+        var gifFromResource = GifDrawable(resources, R.drawable.pushup)
 
         // Works!!!
         workoutGif.setImageDrawable(gifFromResource)
