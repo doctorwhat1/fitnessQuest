@@ -1,4 +1,4 @@
-package com.example.fitnessquest
+package com.example.fitnessquest.onboarding
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +10,8 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.example.fitnessquest.MainActivity
+import com.example.fitnessquest.R
 import com.google.android.material.button.MaterialButton
 
 class OnboardingActivity : AppCompatActivity() {

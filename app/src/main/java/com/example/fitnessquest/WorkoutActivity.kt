@@ -8,19 +8,16 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import okhttp3.OkHttpClient
-import okhttp3.Request
 import org.json.JSONObject
 import pl.droidsonroids.gif.GifDrawable
 import pl.droidsonroids.gif.GifImageView
 
 
-class Workout : AppCompatActivity(), SensorEventListener {
+class WorkoutActivity : AppCompatActivity(), SensorEventListener {
 
 
     // надо бы это как то свернуть

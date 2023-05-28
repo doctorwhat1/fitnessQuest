@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".CatFragment" >
+    tools:context=".home.CatFragment" >
 
     <data>
         <variable
@@ -37,6 +37,8 @@
                     android:layout_width="56dp"
                     android:layout_height="56dp"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"
                     android:padding="0dp"
                     android:src="@drawable/cat_image2"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -52,61 +54,61 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginEnd="8dp"
                     android:foregroundGravity="center_vertical"
                     android:progress="@{catViewModel.currentHP}"
                     android:progressDrawable="@drawable/bg_pb_hp"
-                    app:layout_constraintBottom_toTopOf="@+id/pb_mana"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/iv_cat"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ProgressBar
-                    android:id="@+id/pb_mana"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="0dp"
-                    android:layout_height="16dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:progress="@{catViewModel.currentMana}"
-                    android:progressDrawable="@drawable/bg_pb_mana"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_pb_hp"
                     app:layout_constraintStart_toEndOf="@+id/iv_cat"
-                    app:layout_constraintTop_toBottomOf="@+id/pb_hp" />
+                    app:layout_constraintTop_toBottomOf="@+id/iv_calendar_icon" />
+
+                <ImageView
+                    android:id="@+id/iv_calendar_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:src="@drawable/ic_cat_calendar"
+                    app:layout_constraintBottom_toTopOf="@+id/pb_hp"
+                    app:layout_constraintStart_toEndOf="@+id/iv_cat"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:tint="@color/base_900" />
+
+                <TextView
+                    android:id="@+id/tv_current_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="@{catViewModel.getCurrentDate()}"
+                    android:textAppearance="@style/H6"
+                    android:textColor="@color/base_900"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_calendar_icon"
+                    app:layout_constraintStart_toEndOf="@+id/iv_calendar_icon"
+                    app:layout_constraintTop_toTopOf="@+id/iv_calendar_icon" />
+
+                <TextView
+                    android:id="@+id/tv_pb_hp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/bg_progress_text"
+                    android:backgroundTint="@color/base_500"
+                    android:includeFontPadding="false"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@{@string/cat_hp_progress_bar(catViewModel.currentHP)}"
+                    android:textAppearance="@style/Subtitle"
+                    android:textColor="@color/base_0"
+                    app:layout_constraintBottom_toBottomOf="@+id/pb_hp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/pb_hp"
+                    app:layout_constraintVertical_bias="1.0" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
-
-        <ImageView
-            android:id="@+id/iv_calendar_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/ic_cat_calendar"
-            app:layout_constraintEnd_toStartOf="@+id/tv_current_date"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cv_cat_info"
-            app:tint="@color/base_900" />
-
-        <TextView
-            android:id="@+id/tv_current_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="@{catViewModel.getCurrentDate()}"
-            android:textAppearance="@style/H6"
-            android:textColor="@color/base_900"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_calendar_icon"
-            app:layout_constraintStart_toEndOf="@+id/iv_calendar_icon"
-            app:layout_constraintTop_toTopOf="@+id/iv_calendar_icon" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_strolls"
@@ -150,7 +152,7 @@
                         android:id="@+id/tv_current_steps"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="4656"
+                        android:text="@{catViewModel.currentSteps.toString()}"
                         android:textAppearance="@style/BodyMedium"
                         android:textColor="@color/base_0"
                         app:layout_constraintBottom_toTopOf="@+id/tv_steps"
@@ -177,9 +179,10 @@
                         android:id="@+id/pb_strolls"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:progress="80"
+                        android:progress="@{catViewModel.currentSteps}"
+                        android:max="6000"
                         app:indicatorColor="@color/base_0"
-                        app:indicatorSize="100dp"
+                        app:indicatorSize="80dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -202,6 +205,20 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraint_layout_progress_strolls" />
 
+                <TextView
+                    android:id="@+id/tv_strolls_reward"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_reward"
+                    android:backgroundTint="@color/green_300"
+                    android:paddingStart="4dp"
+                    android:paddingRight="4dp"
+                    android:text="+25HP"
+                    android:visibility="@{catViewModel.currentSteps &lt; 6000 ? View.VISIBLE : View.GONE }"
+                    android:textColor="@color/base_0"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
                 <androidx.constraintlayout.helper.widget.Flow
                     android:id="@+id/flow_strolls_card_description"
                     android:layout_width="0dp"
@@ -215,6 +232,16 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_chainStyle="spread_inside" />
+
+                <ImageView
+                    android:id="@+id/iv_strolls_check_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cat_check"
+                    android:visibility="@{catViewModel.currentSteps &lt; 6000 ? View.GONE : View.VISIBLE }"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:tint="@color/base_0" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
@@ -250,7 +277,7 @@
                     android:id="@+id/tv_current_kilocalories"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:text="@{catViewModel.totalCalories}"
                     android:textAppearance="@style/H6"
                     android:textColor="@color/orange_900" />
 
@@ -302,11 +329,97 @@
                     android:textAppearance="@style/BodyMedium"
                     android:textColor="@color/base_700" />
 
+                <TextView
+                    android:id="@+id/tv_breakfast_reward"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_reward"
+                    android:backgroundTint="@color/orange_800"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:text="+10HP"
+                    android:textAppearance="@style/Caption"
+                    android:textColor="@color/base_0"
+                    android:visibility="@{catViewModel.isBreakfastEntered ? View.GONE : View.VISIBLE }"
+                    app:layout_constraintBottom_toBottomOf="@+id/flow_meals"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/flow_meals"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/tv_lunch_reward"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_reward"
+                    android:backgroundTint="@color/orange_800"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:text="+10HP"
+                    android:textAppearance="@style/Caption"
+                    android:textColor="@color/base_0"
+                    android:visibility="@{catViewModel.isLunchEntered ? View.GONE : View.VISIBLE }"
+                    app:layout_constraintBottom_toBottomOf="@+id/flow_meals"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/flow_meals" />
+
+                <TextView
+                    android:id="@+id/tv_dinner_reward"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_reward"
+                    android:backgroundTint="@color/orange_800"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:text="+10HP"
+                    android:textAppearance="@style/Caption"
+                    android:textColor="@color/base_0"
+                    android:visibility="@{catViewModel.isDinnerEntered ? View.GONE : View.VISIBLE }"
+                    app:layout_constraintBottom_toBottomOf="@+id/flow_meals"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/flow_meals"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <ImageView
+                    android:id="@+id/iv_breakfast_check_icon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_cat_check"
+                    android:visibility="@{catViewModel.isBreakfastEntered ? View.VISIBLE : View.GONE }"
+                    app:layout_constraintBottom_toBottomOf="@+id/flow_meals"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/flow_meals"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:tint="@color/base_800" />
+
+                <ImageView
+                    android:id="@+id/iv_lunch_check_icon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_cat_check"
+                    android:visibility="@{catViewModel.isLunchEntered ? View.VISIBLE : View.GONE }"
+                    app:layout_constraintBottom_toBottomOf="@+id/flow_meals"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/flow_meals"
+                    app:tint="@color/base_800" />
+
+                <ImageView
+                    android:id="@+id/iv_dinner_check_icon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_cat_check"
+                    android:visibility="@{catViewModel.isDinnerEntered ? View.VISIBLE : View.GONE }"
+                    app:layout_constraintBottom_toBottomOf="@+id/flow_meals"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/flow_meals"
+                    app:layout_constraintVertical_bias="1.0"
+                    app:tint="@color/base_800" />
+
                 <Button
                     android:id="@+id/btn_input_food"
                     style="@style/ThemeOverlay.CardButton"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="28dp"
+                    android:layout_marginTop="4dp"
                     android:backgroundTint="@color/orange_900"
                     android:text="ввести"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -331,7 +444,7 @@
 
                 <androidx.constraintlayout.helper.widget.Flow
                     android:id="@+id/flow_food_progress"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     app:constraint_referenced_ids="tv_current_kilocalories,tv_kilocalories_slash,tv_required_kilocalories,tv_kcal"
@@ -340,20 +453,18 @@
                     app:flow_verticalAlign="center"
                     app:layout_constraintBottom_toTopOf="@+id/flow_meals"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/flow_food_card_description" />
 
                 <androidx.constraintlayout.helper.widget.Flow
                     android:id="@+id/flow_meals"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     app:constraint_referenced_ids="tv_breakfast,tv_lunch,tv_dinner"
                     app:flow_horizontalAlign="start"
                     app:layout_constraintBottom_toTopOf="@+id/btn_input_food"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/flow_food_progress" />
 
@@ -391,7 +502,7 @@
                     android:id="@+id/tv_current_activity_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:text="@{catViewModel.currentActivityMins.toString()}"
                     android:textAppearance="@style/H6"
                     android:textColor="@color/red_400" />
 
@@ -419,11 +530,36 @@
                     android:textAppearance="@style/BodyMedium"
                     android:textColor="@color/base_700" />
 
+                <TextView
+                    android:id="@+id/tv_activity_reward"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_reward"
+                    android:backgroundTint="@color/red_300"
+                    android:padding="4dp"
+                    android:text="+25HP"
+                    android:textColor="@color/base_0"
+                    android:visibility="@{catViewModel.currentActivityMins &lt; 90 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/flow_activity_progress"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/flow_activity_progress" />
+
+                <ImageView
+                    android:id="@+id/iv_activity_check_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cat_check"
+                    android:visibility="@{catViewModel.currentActivityMins &lt; 90 ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/flow_activity_progress"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/flow_activity_progress"
+                    app:tint="@color/base_800" />
+
                 <Button
                     android:id="@+id/btn_input_activity"
                     style="@style/ThemeOverlay.CardButton"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="28dp"
                     android:backgroundTint="@color/red_400"
                     android:text="ввести"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -524,24 +660,55 @@
                     android:textAppearance="@style/BodyMedium"
                     android:textColor="@color/base_700" />
 
+                <TextView
+                    android:id="@+id/tv_water_cups_reward"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_reward"
+                    android:backgroundTint="@color/blue_300"
+                    android:padding="4dp"
+                    android:text="+25HP"
+                    android:textColor="@color/base_0"
+                    android:visibility="@{catViewModel.currentWaterCups &lt; 8 ? View.VISIBLE: View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/flow_water_progress"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/flow_water_progress" />
+
+                <ImageView
+                    android:id="@+id/iv_water_cups_check_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cat_check"
+                    android:visibility="@{catViewModel.currentWaterCups &lt; 8 ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/flow_water_progress"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/flow_water_progress"
+                    app:tint="@color/base_800" />
+
                 <ImageButton
                     android:id="@+id/ibtn_decrease_water_cups"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="28dp"
+                    android:background="@drawable/bg_water_button"
                     android:backgroundTint="@color/blue_500"
+                    android:onClick="@{ () -> catViewModel.decreaseWaterCups() }"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
                     android:src="@drawable/ic_baseline_remove_24"
-                    app:tint="@color/base_0"
-                    android:onClick="@{ () -> catViewModel.decreaseWaterCups() }" />
+                    app:tint="@color/base_0" />
 
                 <ImageButton
                     android:id="@+id/ibtn_increase_water_cups"
                     style="@style/ThemeOverlay.CardButton"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="28dp"
+                    android:background="@drawable/bg_water_button"
                     android:backgroundTint="@color/blue_500"
+                    android:onClick="@{ () -> catViewModel.increaseWaterCups() }"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
                     android:src="@drawable/ic_baseline_add_24"
-                    app:tint="@color/base_0"
-                    android:onClick="@{ () -> catViewModel.increaseWaterCups() }"/>
+                    app:tint="@color/base_0" />
 
                 <androidx.constraintlayout.helper.widget.Flow
                     android:id="@+id/flow_water_card_description"
@@ -567,7 +734,7 @@
                     app:flow_verticalAlign="center"
                     app:layout_constraintBottom_toTopOf="@+id/flow_water_buttons"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/flow_water_card_description" />
 
@@ -576,6 +743,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:constraint_referenced_ids="ibtn_decrease_water_cups,ibtn_increase_water_cups"
+                    app:flow_horizontalGap="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -632,12 +800,12 @@
                     android:id="@+id/tv_sleep_time_reward"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="@{catViewModel.isSleepTimeRewardReceived() ? View.GONE : View.VISIBLE }"
-                    android:background="@drawable/bd_reward"
+                    android:background="@drawable/bg_reward"
                     android:backgroundTint="@color/purple_300"
                     android:padding="4dp"
-                    android:text="+50MN"
+                    android:text="+25HP"
                     android:textColor="@color/base_0"
+                    android:visibility="@{(catViewModel.fallingAsleepTime == @string/cat_time_template) ? View.VISIBLE : View.GONE }"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -647,16 +815,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_cat_check"
-                    android:visibility="@{catViewModel.isSleepTimeRewardReceived() ? View.VISIBLE : View.GONE }"
+                    android:visibility="@{(catViewModel.fallingAsleepTime == @string/cat_time_template) ? View.GONE : View.VISIBLE }"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/base_800" />
 
                 <Button
                     android:id="@+id/btn_change_sleep_time"
                     style="@style/ThemeOverlay.CardButton"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="28dp"
                     android:backgroundTint="@color/purple_400"
                     android:text="изменить"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -725,12 +894,12 @@
                     android:id="@+id/tv_weight_reward"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="@{catViewModel.isWeightRewardReceived() ? View.GONE : View.VISIBLE}"
-                    android:background="@drawable/bd_reward"
+                    android:background="@drawable/bg_reward"
                     android:backgroundTint="@color/base_300"
                     android:padding="4dp"
-                    android:text="+50HP"
+                    android:text="+25HP"
                     android:textColor="@color/base_0"
+                    android:visibility="@{catViewModel.currentWeight.equals(@string/cat_weight_template) ? View.VISIBLE : View.GONE }"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -739,7 +908,7 @@
                     android:id="@+id/btn_input_weight"
                     style="@style/ThemeOverlay.CardButton"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="28dp"
                     android:backgroundTint="@color/base_500"
                     android:text="ввести"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -753,10 +922,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_cat_check"
-                    android:visibility="@{catViewModel.isWeightRewardReceived() ? View.VISIBLE : View.GONE}"
+                    android:visibility="@{catViewModel.currentWeight.equals(@string/cat_weight_template) ? View.GONE : View.VISIBLE}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/base_800" />
 
                 <androidx.constraintlayout.helper.widget.Flow
                     android:id="@+id/flow_weight_card_description"
@@ -774,7 +944,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
-        <androidx.constraintlayout.helper.widget.Flow
+         <androidx.constraintlayout.helper.widget.Flow
             android:id="@+id/flow_cat_cards"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -787,249 +957,25 @@
             app:flow_maxElementsWrap="2"
             app:flow_verticalGap="16dp"
             app:flow_wrapMode="chain"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btn_perform_warmup"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_calendar_icon" />
+            app:layout_constraintTop_toBottomOf="@+id/cv_cat_info" />
+
+        <Button
+            android:id="@+id/btn_perform_warmup"
+            style="@style/ThemeOverlay.WarmupButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="выполнить разминку +25HP"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
 
-
-
-
-
-
-
-    <!--DO NOT DELETE-->
-<!--<?xml version="1.0" encoding="utf-8"?>-->
-<!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--    xmlns:tools="http://schemas.android.com/tools"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent"-->
-<!--    tools:context=".Cat">-->
-
-<!--    &lt;!&ndash; TODO: Update blank fragment layout &ndash;&gt;-->
-<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent">-->
-
-<!--        <ProgressBar-->
-<!--            android:id="@+id/progressBarHealth"-->
-<!--            style="?android:attr/progressBarStyleHorizontal"-->
-<!--            android:layout_width="300dp"-->
-<!--            android:layout_height="20dp"-->
-<!--            android:layout_marginStart="55dp"-->
-<!--            android:layout_marginTop="8dp"-->
-<!--            android:layout_marginEnd="56dp"-->
-<!--            android:foregroundGravity="center_vertical"-->
-<!--            android:scaleY="4"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/healthHeader" />-->
-
-<!--        <Button-->
-<!--            android:id="@+id/healthAdd"-->
-<!--            style="@style/Widget.MaterialComponents.Button.Icon"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="79dp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:layout_marginEnd="79dp"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:text="Пополнить Здоровье"-->
-<!--            app:icon="@android:drawable/ic_input_add"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.0"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/healthCounter"-->
-<!--            tools:ignore="SpeakableTextPresentCheck" />-->
-
-<!--        <ProgressBar-->
-<!--            android:id="@+id/progressBarMana"-->
-<!--            style="?android:attr/progressBarStyleHorizontal"-->
-<!--            android:layout_width="300dp"-->
-<!--            android:layout_height="20dp"-->
-<!--            android:layout_marginStart="55dp"-->
-<!--            android:layout_marginTop="8dp"-->
-<!--            android:layout_marginEnd="56dp"-->
-<!--            android:scaleY="4"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/manaHeader" />-->
-
-<!--        <Button-->
-<!--            android:id="@+id/manaAdd"-->
-<!--            style="@style/Widget.MaterialComponents.Button.Icon"-->
-<!--            android:layout_width="55dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="12dp"-->
-<!--            android:layout_marginEnd="52dp"-->
-<!--            android:text=""-->
-<!--            app:icon="@android:drawable/ic_input_add"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/progressBarMana"-->
-<!--            tools:ignore="SpeakableTextPresentCheck" />-->
-
-<!--        <Button-->
-<!--            android:id="@+id/manaRemove"-->
-<!--            style="@style/Widget.MaterialComponents.Button.Icon"-->
-<!--            android:layout_width="55dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="52dp"-->
-<!--            android:layout_marginTop="12dp"-->
-<!--            android:text=""-->
-<!--            app:icon="@android:drawable/ic_delete"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/progressBarMana"-->
-<!--            tools:ignore="SpeakableTextPresentCheck" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/catStatusTXT"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="143dp"-->
-<!--            android:layout_marginEnd="143dp"-->
-<!--            android:text="Заряжен!"-->
-<!--            android:textAlignment="center"-->
-<!--            android:textSize="30dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.571"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/catHeader" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/catHeader"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="177dp"-->
-<!--            android:layout_marginTop="92dp"-->
-<!--            android:layout_marginEnd="177dp"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:text="Ваш кот:"-->
-<!--            android:textAlignment="center"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.0"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/progressBarMana" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/manaHeader"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="188dp"-->
-<!--            android:layout_marginTop="32dp"-->
-<!--            android:layout_marginEnd="188dp"-->
-<!--            android:text="Мана"-->
-<!--            android:textAlignment="center"-->
-<!--            android:textSize="16dp"-->
-<!--            android:textStyle="bold"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/healthAdd" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/healthHeader"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="176dp"-->
-<!--            android:layout_marginTop="72dp"-->
-<!--            android:layout_marginEnd="170dp"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:text="Здоровье"-->
-<!--            android:textAlignment="center"-->
-<!--            android:textSize="16dp"-->
-<!--            android:textStyle="bold"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="1.0"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/manaLeft"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="8dp"-->
-<!--            android:layout_marginEnd="16dp"-->
-<!--            android:text="0"-->
-<!--            app:layout_constraintEnd_toStartOf="@+id/progressBarMana"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/manaHeader" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/manaRight"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="20dp"-->
-<!--            android:layout_marginTop="8dp"-->
-<!--            android:text="7"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/progressBarMana"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/manaHeader" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/manaCounter2"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:layout_marginEnd="200dp"-->
-<!--            android:text="3"-->
-<!--            android:textStyle="bold"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/progressBarMana"-->
-<!--            tools:visibility="visible" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/healthCounter"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="194dp"-->
-<!--            android:layout_marginTop="16dp"-->
-<!--            android:layout_marginEnd="193dp"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:text="500"-->
-<!--            android:textAlignment="center"-->
-<!--            android:textStyle="bold"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.0"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/progressBarHealth" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/healthLeft"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="8dp"-->
-<!--            android:layout_marginEnd="16dp"-->
-<!--            android:text="0"-->
-<!--            app:layout_constraintEnd_toStartOf="@+id/progressBarHealth"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/healthHeader" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/healthLeft2"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="8dp"-->
-<!--            android:layout_marginTop="8dp"-->
-<!--            android:text="2000"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/progressBarHealth"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/healthHeader" />-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/catStatusIMG"-->
-<!--            android:layout_width="200dp"-->
-<!--            android:layout_height="200dp"-->
-<!--            android:layout_marginStart="141dp"-->
-<!--            android:layout_marginTop="4dp"-->
-<!--            android:layout_marginEnd="142dp"-->
-<!--            android:foregroundGravity="center_vertical"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.513"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/catStatusTXT"-->
-<!--            app:srcCompat="@drawable/cat_happy"-->
-<!--            tools:src="@drawable/cat_happy" />-->
-
-<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-<!--</FrameLayout>-->

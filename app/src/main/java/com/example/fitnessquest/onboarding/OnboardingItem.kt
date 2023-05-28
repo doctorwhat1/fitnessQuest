@@ -1,4 +1,4 @@
-package com.example.fitnessquest
+package com.example.fitnessquest.onboarding
 
 data class OnboardingItem(
     val onboardingImage: Int,

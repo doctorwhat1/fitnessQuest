@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.fitnessquest.*
 import com.example.fitnessquest.databinding.FragmentWeightBinding
-import com.example.fitnessquest.home.CatViewModel
+
 
 
 class WeightFragment : Fragment() {
@@ -27,7 +27,7 @@ class WeightFragment : Fragment() {
 
         binding.btnEnter.setOnClickListener {
             val weight = binding.edittextEditWeight.text.toString()
-            if (weight.toDouble() < 40 || weight.toDouble() > 200) {
+            if (weight.toDouble() < 40.0 || weight.toDouble() > 200.0) {
                 Toast.makeText(context, "Введите корректный вес", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -35,13 +35,12 @@ class WeightFragment : Fragment() {
 
             val sharedPref = requireContext().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
             val editor =  sharedPref.edit()
-            editor.putString(CURRENT_WEIGHT, weight)
 
-            if (sharedPref.contains(IS_WEIGHT_REWARD_RECEIVED)
-                && !sharedPref.getBoolean(IS_WEIGHT_REWARD_RECEIVED, true)) {
-                editor.putInt(CURRENT_MANA, sharedPref.getInt(CURRENT_MANA, 0) + 50)
+            val weightTemplate = resources.getString(R.string.cat_weight_template)
+            if (sharedPref.getString(CURRENT_WEIGHT, weightTemplate) == weightTemplate) {
+                editor.putInt(CURRENT_HP, (sharedPref.getInt(CURRENT_HP, 0) + 25))
             }
-            editor.putBoolean(IS_WEIGHT_REWARD_RECEIVED, true)
+            editor.putString(CURRENT_WEIGHT, weight)
 
             editor.apply()
         }

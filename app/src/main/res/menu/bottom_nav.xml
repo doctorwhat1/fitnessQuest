@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:title="Кот"
-        android:id="@+id/cat"
+        android:id="@+id/catFragment"
         android:icon="@drawable/ic_baseline_festival_24"/>
     <item android:title="Битвы"
-        android:id="@+id/battles"
+        android:id="@+id/battlesFragment"
         android:icon="@drawable/ic_baseline_catching_pokemon_24"/>
     <item android:title="Настройки"
-        android:id="@+id/settings"
+        android:id="@+id/settingsFragment"
         android:icon="@drawable/ic_baseline_settings_24"/>
 </menu>

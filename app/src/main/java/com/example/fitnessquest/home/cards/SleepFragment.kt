@@ -29,14 +29,15 @@ class SleepFragment : Fragment() {
 
             val sharedPref = requireContext().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
             val editor =  sharedPref.edit()
+
+            val timeTemplate = resources.getString(R.string.cat_time_template)
+            if (sharedPref.getString(FALLING_ASLEEP_TIME, timeTemplate) == timeTemplate
+                || sharedPref.getString(WAKEUP_TIME, timeTemplate) == timeTemplate) {
+                editor.putInt(CURRENT_HP, sharedPref.getInt(CURRENT_HP, 0) + 25)
+            }
+
             editor.putString(FALLING_ASLEEP_TIME, fallingAsleepTime)
             editor.putString(WAKEUP_TIME, wakeupTime)
-
-            if (!sharedPref.getBoolean(IS_SLEEP_TIME_REWARD_RECEIVED, true)) {
-                editor.putInt(CURRENT_MANA, sharedPref.getInt(CURRENT_MANA, 0) + 50)
-            }
-            editor.putBoolean(IS_SLEEP_TIME_REWARD_RECEIVED, true)
-
 
             editor.apply()
         }

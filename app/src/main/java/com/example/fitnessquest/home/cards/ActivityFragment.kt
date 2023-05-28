@@ -1,21 +1,20 @@
 package com.example.fitnessquest.home.cards
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentActivity
-import com.example.fitnessquest.R
+import android.widget.Toast
+import com.example.fitnessquest.*
 import com.example.fitnessquest.databinding.FragmentActivityBinding
-import com.example.fitnessquest.databinding.FragmentCatBinding
 
 
 class ActivityFragment : Fragment() {
     // view binding
     private var _binding: FragmentActivityBinding? = null
     private val binding get() = _binding!!
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,6 +23,24 @@ class ActivityFragment : Fragment() {
         _binding = FragmentActivityBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        binding.btnEnterActivityAf.setOnClickListener {
+            val enteredActivityMins = binding.etEditActivityAf.text.toString().toInt()
+            
+            if (enteredActivityMins < 0 || enteredActivityMins > 200) {
+                Toast.makeText(context, "Введите корректное число минут", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val sharedPref = requireContext().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
+            val editor =  sharedPref.edit()
+            val totalActivityMins = sharedPref.getInt(CURRENT_ACTIVITY_MINS, 0) + enteredActivityMins
+            editor.putInt(CURRENT_ACTIVITY_MINS, totalActivityMins)
+            if (totalActivityMins - enteredActivityMins < 90 && totalActivityMins >= 90) {
+                editor.putInt(CURRENT_HP, sharedPref.getInt(CURRENT_HP, 0) + 25)
+            }
+            editor.apply()
+        }
+        
         return view
     }
 
