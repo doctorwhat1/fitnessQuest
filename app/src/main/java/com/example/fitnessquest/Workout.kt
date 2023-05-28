@@ -13,6 +13,8 @@ import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import org.json.JSONObject
 import pl.droidsonroids.gif.GifDrawable
 import pl.droidsonroids.gif.GifImageView
@@ -90,6 +92,10 @@ class Workout : AppCompatActivity(), SensorEventListener {
 //
 //    val response = client.newCall(request).execute()
 
+
+
+
+
    // var sharedPref = getSharedPreferences(resources.getString(R.string.app_name), Context.MODE_PRIVATE)
    // var sharedPref = getSharedPreferences(resources.getString(R.string.app_name), getContext())
 
@@ -108,6 +114,8 @@ class Workout : AppCompatActivity(), SensorEventListener {
 
 
     val json_response = json_EXAMPLE
+    //ACTUAL CODE BELOW, ADD THREADS OR COROUTINES
+    //val json_response = response.toString()
 
     val jsonObject1 = JSONObject(json_response)
 
