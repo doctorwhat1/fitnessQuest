@@ -1,11 +1,15 @@
 package com.example.fitnessquest.home
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.hardware.SensorManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -94,7 +98,54 @@ class CatFragment : Fragment() {
             view.findNavController().navigate(R.id.action_catFragment_to_weightFragment)
         }
 
-        binding.btnPerformWarmup.setOnClickListener { viewModel.increaseHP() }
+        binding.btnPerformWarmup.setOnClickListener {
+
+            var builder = AlertDialog.Builder(activity)
+            builder.setTitle("Упражнение")
+            builder.setMessage("Выбранное упражнение необходимо выполнить в реальной жизни, в комфортном для вас темпе и соблюдая технику безопасности")
+            builder.setPositiveButton("Выполнить", DialogInterface.OnClickListener {
+                    dialog, id -> Toast.makeText(context,"Completed!", Toast.LENGTH_SHORT).show()
+                dialog.cancel()
+                viewModel.increaseHP()
+            })
+
+            builder.setNegativeButton("Отмена", DialogInterface.OnClickListener {
+                    dialog, id ->
+                dialog.cancel()
+
+            })
+            var alert = builder.create()
+
+            val popupMenu: PopupMenu = PopupMenu(context,binding.btnPerformWarmup)
+            popupMenu.menuInflater.inflate(R.menu.warmup_menu,popupMenu.menu)
+            popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
+                when(item.itemId) {
+                    R.id.pushupX5 -> {
+                        //  Toast.makeText(context, "You Clicked : " + item.title, Toast.LENGTH_SHORT)
+                        //    .show()
+                        alert = builder.create()
+                        alert.show()
+
+                    }
+                    R.id.pushupX10 ->{
+                        //   Toast.makeText(context, "You Clicked : " + item.title, Toast.LENGTH_SHORT).show()
+                        alert = builder.create()
+                        alert.show()
+                    }
+
+                    R.id.situpX5 -> {
+                        //  Toast.makeText(context, "You Clicked : " + item.title, Toast.LENGTH_SHORT).show()
+                        alert = builder.create()
+                        alert.show()
+                    }
+                }
+                true
+            })
+            popupMenu.show()
+
+
+           // viewModel.increaseHP()
+        }
 
         return view
     }
