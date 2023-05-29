@@ -8,23 +8,32 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
+import android.os.StrictMode
+import android.util.Log
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.coroutines.*
+import okhttp3.*
 import org.json.JSONObject
 import pl.droidsonroids.gif.GifDrawable
 import pl.droidsonroids.gif.GifImageView
+import java.io.IOException
+import java.lang.Thread.sleep
+import java.util.concurrent.Executor
 
 
 class WorkoutActivity : AppCompatActivity(), SensorEventListener {
+    val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
 
 
     // надо бы это как то свернуть
     val json_EXAMPLE = "{\n" +
             "  \"Warm Up\": [\n" +
             "    {\n" +
-            "      \"Exercise\": \"Jumping Jacks\",\n" +
+            "      \"Exercise\": \"Jumping Jackes\",\n" +
             "      \"Time\": \"2 minutes\"\n" +
             "    },\n" +
             "    {\n" +
@@ -78,16 +87,56 @@ class WorkoutActivity : AppCompatActivity(), SensorEventListener {
             "}"
 
 
-//    val client = OkHttpClient()
+    val client = OkHttpClient()
+
+    val request = Request.Builder()
+        // .url("https://workout-planner1.p.rapidapi.com/?time=10&muscle=biceps&location=home&equipment=none")
+        .url("https://workout-planner1.p.rapidapi.com/?time=20&location=home")
+        .get()
+        .addHeader("X-RapidAPI-Key", "9c4dc0a8ebmshc4b3d4d062067b5p14740bjsn7a05f1b9b925")
+        .addHeader("X-RapidAPI-Host", "workout-planner1.p.rapidapi.com")
+        .build()
+  //  val response = client.newCall(request).execute()
+
+
+
+
+
+
+//    fun runApi()
+//    {
+//        CoroutineScope(Dispatchers.IO).launch {
+//            val request = Request.Builder()
+//                .url("https://workout-planner1.p.rapidapi.com/?time=10&muscle=biceps&location=home&equipment=none")
+//                .get()
+//                .addHeader("X-RapidAPI-Key", "9c4dc0a8ebmshc4b3d4d062067b5p14740bjsn7a05f1b9b925")
+//                .addHeader("X-RapidAPI-Host", "workout-planner1.p.rapidapi.com")
+//                .build()
 //
-//    val request = Request.Builder()
-//        .url("https://workout-planner1.p.rapidapi.com/?time=10&muscle=biceps&location=home&equipment=none")
-//        .get()
-//        .addHeader("X-RapidAPI-Key", "9c4dc0a8ebmshc4b3d4d062067b5p14740bjsn7a05f1b9b925")
-//        .addHeader("X-RapidAPI-Host", "workout-planner1.p.rapidapi.com")
-//        .build()
+////            try {
+////                val response = withContext(Dispatchers.IO) {
+////                    client.newCall(request).execute()
+////                }
+////
+////                print("WORKED")
+////                // Handle the response here
+////                // You can access the response body using response.body()?.string()
+////
+////            } catch (e: IOException) {
+////                // Handle the exception here
+////                print("DIDN'T WORK")
+////            }
+//        }
 //
+//    }
+
+
+
+//  thread error
 //    val response = client.newCall(request).execute()
+//
+
+
 
 
 
@@ -110,15 +159,15 @@ class WorkoutActivity : AppCompatActivity(), SensorEventListener {
     lateinit var sensorManager: SensorManager
 
 
-    val json_response = json_EXAMPLE
+    var json_response = json_EXAMPLE
     //ACTUAL CODE BELOW, ADD THREADS OR COROUTINES
     //val json_response = response.toString()
 
-    val jsonObject1 = JSONObject(json_response)
+    var jsonObject1 = JSONObject(json_response)
 
-    val jsonArray1 = jsonObject1.getJSONArray("Exercises")
+    var jsonArray1 = jsonObject1.getJSONArray("Exercises")
 
-    val arrayLen = jsonArray1.length()
+    var arrayLen = jsonArray1.length()
 
     //val jsonArray1 = JSONArray(json_response)
 
@@ -138,10 +187,59 @@ class WorkoutActivity : AppCompatActivity(), SensorEventListener {
 
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_workout)
 
+        suspend fun fetchApiData(): String? {
+            return withContext(Dispatchers.IO) {
+                val request = Request.Builder()
+                    .url("https://workout-planner1.p.rapidapi.com/?time=10&muscle=biceps&location=home&equipment=none")
+                    .get()
+                    .addHeader("X-RapidAPI-Key", "9c4dc0a8ebmshc4b3d4d062067b5p14740bjsn7a05f1b9b925")
+                    .addHeader("X-RapidAPI-Host", "workout-planner1.p.rapidapi.com")
+                    .build()
+
+                val response = client.newCall(request).execute()
+                return@withContext response.body()?.string()
+            }
+        }
+
+
+        CoroutineScope(Dispatchers.Main).launch {
+            val jsonData = fetchApiData()
+            if (jsonData != null) {
+                // Handle the JSON data here
+                json_response = jsonData
+                jsonObject1 = JSONObject(json_response)
+                jsonArray1 = jsonObject1.getJSONArray("Exercises")
+                arrayLen = jsonArray1.length()
+                // You can parse it using a JSON library like Gson or kotlinx.serialization
+            } else {
+                // Handle the case where jsonData is null (e.g., network error occurred)
+            }
+        }
+
+        sleep(500)
+
+//        val api_json_response = CoroutineScope(Dispatchers.IO).launch {
+//                val request = Request.Builder()
+//                    .url("https://workout-planner1.p.rapidapi.com/?time=10&muscle=biceps&location=home&equipment=none")
+//                    .get()
+//                    .addHeader(
+//                        "X-RapidAPI-Key",
+//                        "9c4dc0a8ebmshc4b3d4d062067b5p14740bjsn7a05f1b9b925"
+//                    )
+//                    .addHeader("X-RapidAPI-Host", "workout-planner1.p.rapidapi.com")
+//                    .build()
+//
+//                val response = client.newCall(request).execute()
+//            }
+
+
+
+       // runApi()
 
 //translation
         val englishMap = HashMap<String, String>()
@@ -231,7 +329,7 @@ class WorkoutActivity : AppCompatActivity(), SensorEventListener {
            var jsonObject1 = jsonArray1.getJSONObject(step)
             /// exerciseName.setText(jsonObject1.getString("Exercise"))
             exerciseName.setText(englishMap.get(jsonObject1.getString("Exercise")))
-            exerciseReps.setText(jsonObject1.getString("Reps"))
+            exerciseReps.setText("Повторить " + jsonObject1.getString("Reps") +" раз")
             step+=1
 
             if (exerciseName.text.isEmpty()){

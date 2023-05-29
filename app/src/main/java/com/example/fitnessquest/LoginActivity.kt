@@ -43,6 +43,7 @@ class LoginActivity : AppCompatActivity() {
         if (sharedPref.getString("user","none").toString() != "none") {
             val intent = Intent(this, OnboardingActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
 
@@ -62,6 +63,7 @@ class LoginActivity : AppCompatActivity() {
                         //TODO ADD SHARDPREF CHECK
                         val intent = Intent(this, OnboardingActivity::class.java)
                         startActivity(intent)
+                        finish()
 
                     } else {
                         Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()

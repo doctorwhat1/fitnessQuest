@@ -32,28 +32,28 @@ class OnboardingActivity : AppCompatActivity() {
             listOf(
                 OnboardingItem(
                     onboardingImage = R.drawable.im2exposition,
-                    title = "Кто мы сейчас?",
-                    description = "Жил был кот. Жил себе и добра калорийного наживал. Распух, аж встать не мог"
+                    title = "Жил был кот",
+                    description = "Жил себе и добра калорийного наживал. Распух, аж встать не мог."
                 ),
                 OnboardingItem(
                     onboardingImage = R.drawable.im3thought,
-                    title = "Кем мы хотим стать?",
-                    description = "В один прекрасный день он решил измениться! Cделать себя лучше, сильнее, больше"
+                    title = "Но тут он понял...",
+                    description = "Что ему нужно прокачать себя, иначе он потеряет свою милоту."
                 ),
                 OnboardingItem(
                     onboardingImage = R.drawable.im4dare,
-                    title = "Как нам этого добиться?",
-                    description = "Он знал, что для этого ему понадобится, правильно питаться, чтобы укрепить своё здоровье. Пить воду, чтобы восстановить свои силы"
+                    title = "Как ему это сделать?",
+                    description = "Конечно же через драки, битвы и сражения!"
                 ),
                 OnboardingItem(
                     onboardingImage = R.drawable.im5go,
-                    title = "Где нам проверить свои силы?",
-                    description = "И много. очень много тренироваться ,дабы стать сильнее! В поединках с монстрами!"
+                    title = "А именно:",
+                    description = "Выполняйте ежедневные задания и повышайте Здоровье кота."
                 ),
                 OnboardingItem(
                     onboardingImage = R.drawable.im6mass,
-                    title = "Все ответы найдете здесь",
-                    description = "Присоединяйтесь к битве вместе с котиком. Двигайтесь и достигайте новых побед вместе!"
+                    title = "Побеждайте боссов лени!",
+                    description = "Помогайте котику в сражениях. Двигайтесь и достигайте новых побед вместе!"
                 )
             )
         )
