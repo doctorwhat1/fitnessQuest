@@ -3,6 +3,7 @@ package com.example.fitnessquest.home
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.content.SharedPreferences
 import android.hardware.SensorManager
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.fitnessquest.APP_PREFERENCES
 import com.example.fitnessquest.CURRENT_HP
+import com.example.fitnessquest.PREVIOUS_SAVED_DATE
 import com.example.fitnessquest.R
 import com.example.fitnessquest.databinding.FragmentCatBinding
 
@@ -37,11 +39,12 @@ class CatFragment : Fragment() {
 
         // Adding a context of SENSOR_SERVICE as Sensor Manager
         val sensorManager = requireActivity().getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        val sharedPreferences = requireContext()
+            .getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
         viewModelFactory = CatViewModelFactory(
             sensorManager,
             resources,
-            requireContext()
-                .getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
+            sharedPreferences
         )
         viewModel = ViewModelProvider(this, viewModelFactory)
             .get(CatViewModel::class.java)
@@ -49,9 +52,12 @@ class CatFragment : Fragment() {
         binding.catViewModel = viewModel // set the data binding variable
         binding.lifecycleOwner = viewLifecycleOwner // lets the layout respond to live data updates
 
+
+        viewModel.checkDateForReloadData()
+
+
         // cat HP
         viewModel.setHP()
-
 
         viewModel.setTotalCalories()
         viewModel.setCurrentActivity()
@@ -62,6 +68,7 @@ class CatFragment : Fragment() {
         viewModel.setIsBreakfastEntered()
         viewModel.setIsLunchEntered()
         viewModel.setIsDinnerEntered()
+        viewModel.setIsSleepTimeEntered()
 
 
         // set cards on click

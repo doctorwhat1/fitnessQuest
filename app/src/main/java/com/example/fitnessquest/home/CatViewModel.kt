@@ -1,18 +1,17 @@
 package com.example.fitnessquest.home
 
-import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Resources
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.fitnessquest.*
+import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.util.*
 
 class CatViewModel(
@@ -106,6 +105,10 @@ class CatViewModel(
     val isDinnerEntered: LiveData<Boolean>
         get() = _isDinnerEntered
 
+    private val _isSleepTimeEntered = MutableLiveData(false)
+    val isSleepTimeEntered: LiveData<Boolean>
+        get() = _isSleepTimeEntered
+
     
     fun setHP() {
         _currentHP.value = sharedPreferences.getInt(CURRENT_HP, 0)
@@ -180,6 +183,10 @@ class CatViewModel(
         _isDinnerEntered.value = sharedPreferences.getBoolean(IS_DINNER_ENTERED, false)
     }
 
+    fun setIsSleepTimeEntered() {
+        _isSleepTimeEntered.value = sharedPreferences.getBoolean(IS_SLEEP_TIME_ENTERED, false)
+    }
+
     fun increaseHP() {
         if (_currentHP.value == 100) return
 
@@ -187,6 +194,41 @@ class CatViewModel(
         _currentHP.value = if (_currentHP.value!! > 75) 100 else _currentHP.value!! + 25
         editor.putInt(CURRENT_HP, _currentHP.value!!)
         editor.apply()
+    }
+
+    fun reloadData() {
+        val editor = sharedPreferences.edit()
+        editor.putFloat(INITIAL_TOTAL_STEPS, 0f)
+        editor.putString(TOTAL_CALORIES, "0")
+        editor.putString(BREAKFAST_CALORIES, "0")
+        editor.putString(LUNCH_CALORIES, "0")
+        editor.putString( DINNER_CALORIES, "0")
+        editor.putInt(CURRENT_ACTIVITY_MINS, 0)
+        editor.putInt(CURRENT_WATER_CUPS, 0)
+        editor.putString(FALLING_ASLEEP_TIME, resources.getString(R.string.cat_time_template))
+        editor.putString(WAKEUP_TIME, resources.getString(R.string.cat_time_template))
+        editor.putString(CURRENT_WEIGHT, resources.getString(R.string.cat_weight_template))
+        editor.putBoolean(IS_BREAKFAST_ENTERED, false)
+        editor.putBoolean(IS_LUNCH_ENTERED, false)
+        editor.putBoolean(IS_DINNER_ENTERED, false)
+        editor.putBoolean(IS_SLEEP_TIME_ENTERED, false)
+        editor.putInt(CURRENT_HP, 0)
+        editor.apply()
+    }
+
+    fun checkDateForReloadData() {
+        val previousSavedDate = sharedPreferences.getString(PREVIOUS_SAVED_DATE, "")
+
+        val time = Calendar.getInstance().time
+        val formatter = SimpleDateFormat("yyyy-MM-dd")
+        val currentDate = formatter.format(time)
+
+        if (previousSavedDate == "" || currentDate != previousSavedDate) {
+            reloadData()
+            val editor = sharedPreferences.edit()
+            editor.putString(PREVIOUS_SAVED_DATE, currentDate)
+            editor.apply()
+        }
     }
 
 }

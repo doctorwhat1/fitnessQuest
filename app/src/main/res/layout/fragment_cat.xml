@@ -805,7 +805,7 @@
                     android:padding="4dp"
                     android:text="+25HP"
                     android:textColor="@color/base_0"
-                    android:visibility="@{(catViewModel.fallingAsleepTime == @string/cat_time_template) ? View.VISIBLE : View.GONE }"
+                    android:visibility="@{ catViewModel.isSleepTimeEntered() ? View.GONE : View.VISIBLE }"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -815,7 +815,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_cat_check"
-                    android:visibility="@{(catViewModel.fallingAsleepTime == @string/cat_time_template) ? View.GONE : View.VISIBLE }"
+                    android:visibility="@{ catViewModel.isSleepTimeEntered() ? View.VISIBLE : View.GONE }"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
