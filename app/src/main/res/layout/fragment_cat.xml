@@ -180,7 +180,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:progress="@{catViewModel.currentSteps}"
-                        android:max="6000"
+                        android:max="@{catViewModel.requiredTotalSteps}"
                         app:indicatorColor="@color/base_0"
                         app:indicatorSize="80dp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -196,7 +196,7 @@
                     android:id="@+id/tv_strolls_goal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Цель 6000"
+                    android:text="@{@string/cat_steps_goal(catViewModel.requiredTotalSteps)}"
                     android:textAppearance="@style/Caption"
                     android:textColor="@color/green_100"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -293,7 +293,7 @@
                     android:id="@+id/tv_required_kilocalories"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2500"
+                    android:text="@{catViewModel.requiredTotalCalories.toString()}"
                     android:textAppearance="@style/BodyMedium"
                     android:textColor="@color/orange_900" />
 

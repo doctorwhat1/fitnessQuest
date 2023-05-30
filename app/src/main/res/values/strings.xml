@@ -11,6 +11,7 @@
     <string name="change">изменить</string>
 
     <!--cat fragment-->
+    <string name="cat_steps_goal">Цель %d</string>
     <string name="cat_time_template">**:**</string>
     <string name="cat_weight_template">--</string>
     <string name="cat_sleep_time">%1$s - %2$s</string>

@@ -55,6 +55,8 @@ class CatFragment : Fragment() {
 
         viewModel.checkDateForReloadData()
 
+        viewModel.setRequiredTotalSteps()
+        viewModel.setRequiredTotalCalories()
 
         // cat HP
         viewModel.setHP()

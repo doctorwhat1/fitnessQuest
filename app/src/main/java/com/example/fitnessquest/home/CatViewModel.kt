@@ -61,6 +61,16 @@ class CatViewModel(
     // ------------------------------------------------------------------------------------------------
 
 
+    private val _requiredTotalSteps = MutableLiveData(0)
+    val requiredTotalSteps: LiveData<Int>
+        get() = _requiredTotalSteps
+
+    private val _requiredTotalCalories = MutableLiveData(0)
+    val requiredTotalCalories: LiveData<Int>
+        get() = _requiredTotalCalories
+
+
+
     // current HP
     private val _currentHP = MutableLiveData(0)
     val currentHP: LiveData<Int>
@@ -109,11 +119,19 @@ class CatViewModel(
     val isSleepTimeEntered: LiveData<Boolean>
         get() = _isSleepTimeEntered
 
-    
+
+    fun setRequiredTotalSteps() {
+        _requiredTotalSteps.value = sharedPreferences.getInt(REQUIRED_TOTAL_STEPS, 6000)
+    }
+
+    fun setRequiredTotalCalories() {
+        _requiredTotalCalories.value = sharedPreferences.getInt(REQUIRED_TOTAL_CALORIES, 2500)
+    }
+
+
     fun setHP() {
         _currentHP.value = sharedPreferences.getInt(CURRENT_HP, 0)
     }
-
     
 
     fun setTotalCalories() {
